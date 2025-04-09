@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontak - AbduDev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+        <img src="logo.jpg" alt="Logo"> AbduDev
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">Tentang</a>
+        <a href="contact.html">Kontak</a>
+         <a href="todo.html">To-Do</a>
+         <a href="leaderboard.html">Leaderboard</a>
+          <a href="pelajar.html">Belajar</a>
+      </nav>
+    </div>
+  </header>
+
+  <section>
+    <h2>Hubungi Saya</h2>
+    <form id="formKontak">
+      <input type="text" id="nama" placeholder="Nama Anda" required /><br><br>
+      <input type="email" id="email" placeholder="Email Anda" required /><br><br>
+      <textarea id="pesan" placeholder="Pesan Anda" required></textarea><br><br>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 AbduDev. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('formKontak').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nama = document.getElementById('nama').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pesan = document.getElementById('pesan').value.trim();
+      if (!nama || !email || !pesan) {
+        alert("Semua kolom wajib diisi!");
+        return;
+      }
+      alert(`Terima kasih, ${nama}! Pesan kamu sudah terkirim.`);
+      this.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Edukasi Pelajar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #c1dfc4, #deecdd);
+      color: #333;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #2f4858;
+    }
+    .section {
+      background: white;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 700px;
+    }
+    .todo input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .todo label {
+      display: block;
+      padding: 5px 0;
+    }
+    .absensi button, .game button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #4caf50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .calculator input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .calculator div {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Panel Edukasi Pelajar Interaktif</h1>
+
+  <div class="section todo">
+    <h2>151. Tugas Harian</h2>
+    <label><input type="checkbox"> Hafalan Qur'an</label>
+    <label><input type="checkbox"> Mengerjakan PR</label>
+    <label><input type="checkbox"> Membaca Buku</label>
+    <label><input type="checkbox"> Belajar 1 Jam</label>
+  </div>
+
+  <div class="section absensi">
+    <h2>157. Absensi Online</h2>
+    <p>Nama: <input type="text" placeholder="Nama lengkap" /></p>
+    <button onclick="alert('Absensi berhasil!')">Absen Masuk</button>
+    <button onclick="alert('Pulang dicatat!')">Absen Pulang</button>
+  </div>
+
+  <div class="section calculator">
+    <h2>160. Kalkulator Fisika (Gaya)</h2>
+    <p>Masukkan Massa (kg): <input type="number" id="massa" /></p>
+    <p>Masukkan Percepatan (m/s²): <input type="number" id="percepatan" /></p>
+    <button onclick="hitungGaya()">Hitung Gaya</button>
+    <div id="hasil"></div>
+  </div>
+
+  <div class="section game">
+    <h2>199. Game Edukasi HTML</h2>
+    <p>Kuis: Apa tag HTML untuk membuat paragraf?</p>
+    <button onclick="cekJawaban(this)">&lt;div&gt;</button>
+    <button onclick="cekJawaban(this)">&lt;p&gt;</button>
+    <button onclick="cekJawaban(this)">&lt;span&gt;</button>
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    function hitungGaya() {
+      const m = parseFloat(document.getElementById('massa').value);
+      const a = parseFloat(document.getElementById('percepatan').value);
+      const gaya = m * a;
+      document.getElementById('hasil').textContent = 'Gaya: ' + gaya + ' N';
+    }
+
+    function cekJawaban(button) {
+      if (button.textContent === '<p>') {
+        document.getElementById('feedback').textContent = 'Benar!';
+        button.style.background = '#4caf50';
+      } else {
+        document.getElementById('feedback').textContent = 'Salah, coba lagi.';
+        button.style.background = '#f44336';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Up Game Otomatis</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @keyframes slideFadeIn {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .animate-slideFadeIn { animation: slideFadeIn 0.8s ease-out forwards; }
+    .float { animation: float 2.5s ease-in-out infinite; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fad0c4 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      transition: background-color 0.5s ease;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .dark-mode {
+      background: #1f2937;
+      color: white;
+    }
+    .dark-mode .bg-white\/90 {
+      background-color: rgba(31, 41, 55, 0.9);
+    }
+    .dark-mode input,
+    .dark-mode select {
+      background-color: #374151;
+      color: white;
+      border-color: #4b5563;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 text-gray-800"><button onclick="toggleDarkMode()"
+class="fixed top-5 right-5 z-50 bg-black text-white px-4 py-2 rounded-xl shadow-md hover:opacity-80"> Toggle Mode </button>
+
+<audio id="successSound" src="https://www.myinstants.com/media/sounds/success-fanfare-trumpets.mp3"></audio>
+
+  <div class="bg-white/90 backdrop-blur-md p-12 rounded-3xl shadow-2xl w-full max-w-4xl animate-slideFadeIn">
+    <h2 class="text-5xl font-extrabold text-center text-pink-600 mb-10 float drop-shadow-lg flex items-center justify-center gap-2">
+      <i data-lucide="shopping-cart"></i> Top Up Game Otomatis
+    </h2><!-- Logo game -->
+<div class="flex justify-center gap-8 mb-8">
+  <img src="https://seeklogo.com/images/F/free-fire-logo-F7482D88F4-seeklogo.com.png" alt="Free Fire" class="h-16 hover:scale-110 transition-transform">
+  <img src="https://seeklogo.com/images/M/mobile-legends-logo-427B29DCA3-seeklogo.com.png" alt="Mobile Legends" class="h-16 hover:scale-110 transition-transform">
+  <img src="https://seeklogo.com/images/P/pubg-logo-988A2BAA6F-seeklogo.com.png" alt="PUBG" class="h-16 hover:scale-110 transition-transform">
+</div>
+
+<form id="topupForm" class="space-y-8">
+  <div>
+    <label class="block text-base font-semibold text-gray-700 mb-2">Pilih Game</label>
+    <select id="product" required
+            class="w-full px-5 py-4 text-lg rounded-xl border focus:ring-2 focus:ring-pink-400">
+      <option value="">-- Pilih Game --</option>
+      <option value="ff70">Free Fire 70 DM - Rp 8.800</option>
+      <option value="ml86">Mobile Legends 86 DM - Rp 20.000</option>
+      <option value="pubg70">PUBG 70 UC - Rp 15.000</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block text-base font-semibold text-gray-700 mb-2">Harga</label>
+    <input type="text" id="price" readonly
+           class="w-full px-5 py-4 text-lg rounded-xl border bg-gray-100 text-gray-700">
+  </div>
+
+  <div>
+    <label class="block text-base font-semibold text-gray-700 mb-2">ID Pengguna / Game</label>
+    <input type="text" id="user_id" required
+           class="w-full px-5 py-4 text-lg rounded-xl border focus:ring-2 focus:ring-pink-400">
+  </div>
+
+  <button type="submit"
+          class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white text-xl font-bold py-4 rounded-xl shadow-xl hover:opacity-90 transform hover:scale-105 transition-all duration-300 flex justify-center items-center gap-2">
+    <svg id="spinner" class="hidden animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 11-8 8z"></path>
+    </svg>
+    <span id="btnText">Top Up Sekarang</span>
+  </button>
+</form>
+
+<div id="response" class="mt-6 text-center text-base text-gray-900 font-semibold"></div>
+
+  </div>  <script>
+    lucide.createIcons();
+
+    const API_ID = 'r4D8SMb6';
+    const API_KEY = 'CVtHFgfakzWxKHIryCXC03eMuDf0DP20Oov9irdYbWnvUFDjEWUFAviGH6lk2MqJ';
+    const SIGN = '4fefbbc8fe6ffe643afca72959c4727a';
+
+    const prices = {
+      'ff70': 8800,
+      'ml86': 20000,
+      'pubg70': 15000
+    };
+
+    const productSelect = document.getElementById('product');
+    const priceInput = document.getElementById('price');
+    const form = document.getElementById('topupForm');
+    const responseDiv = document.getElementById('response');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const successSound = document.getElementById('successSound');
+
+    productSelect.addEventListener('change', () => {
+      const selected = productSelect.value;
+      priceInput.value = selected ? 'Rp ' + prices[selected].toLocaleString('id-ID') : '';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      spinner.classList.remove('hidden');
+      btnText.textContent = 'Memproses...';
+
+      const product = productSelect.value;
+      const user_id = document.getElementById('user_id').value;
+
+      const data = new URLSearchParams();
+      data.append('key', API_KEY);
+      data.append('sign', SIGN);
+      data.append('type', 'game');
+      data.append('id', API_ID);
+      data.append('service', product);
+      data.append('data_no', user_id);
+
+      try {
+        const res = await fetch('https://vip-reseller.co.id/api/game-feature', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: data
+        });
+
+        const result = await res.json();
+        responseDiv.innerText = 'Status: ' + result.data.status + ' | Pesan: ' + result.data.message;
+
+        if (result.data.status === 'Sukses') {
+          successSound.play();
+          setTimeout(() => {
+            window.location.href = 'sukses.html';
+          }, 2000);
+        }
+
+      } catch (error) {
+        responseDiv.innerText = 'Gagal mengirim top up.';
+      }
+
+      spinner.classList.add('hidden');
+      btnText.textContent = 'Top Up Sekarang';
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script></body>
+</html>

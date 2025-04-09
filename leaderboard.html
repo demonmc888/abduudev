@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard Tebak Buah</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fbc2eb, #a6c1ee);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .leaderboard-box {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 700px;
+      width: 100%;
+      animation: fadeIn 1s ease;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #2d2d2d;
+    }
+    img.trophy {
+      display: block;
+      margin: 0 auto 15px;
+      width: 80px;
+      animation: bounce 1s infinite alternate;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #f0f0f0;
+    }
+    tr:hover { background-color: #f9f9f9; }
+    .btn {
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: #6a11cb;
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="leaderboard-box">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="trophy" alt="Piala">
+    <h1>Leaderboard Tebak Buah</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Pemain</th>
+          <th>Skor</th>
+          <th>Waktu</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody">
+        <tr><td colspan="3">Belum ada skor</td></tr>
+      </tbody>
+    </table>
+    <button class="btn" onclick="resetLeaderboard()">Reset Leaderboard</button>
+  </div>
+
+  <script>
+    function loadLeaderboard() {
+      const data = JSON.parse(localStorage.getItem("leaderboardBuah")) || [];
+      const tbody = document.getElementById("leaderboardBody");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='3'>Belum ada skor</td></tr>";
+        return;
+      }
+
+      data.sort((a, b) => b.skor - a.skor);
+
+      for (let i = 0; i < data.length; i++) {
+        const row = `<tr>
+          <td>${data[i].nama}</td>
+          <td>${data[i].skor}</td>
+          <td>${data[i].waktu}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      }
+    }
+
+    function resetLeaderboard() {
+      if (confirm("Yakin ingin menghapus semua skor?")) {
+        localStorage.removeItem("leaderboardBuah");
+        loadLeaderboard();
+      }
+    }
+
+    loadLeaderboard();
+  </script>
+</body>
+</html>

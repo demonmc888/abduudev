@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Main Tebak Buah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      margin: 0;
+      padding: 40px 20px;
+      color: #333;
+    }
+    .game-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+    h2 { color: #185a9d; }
+    input[type="text"] {
+      padding: 12px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 60%;
+      margin-bottom: 10px;
+    }
+    .btn {
+      padding: 10px 20px;
+      background: #2575fc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+    }
+    #wordDisplay {
+      font-size: 40px;
+      letter-spacing: 10px;
+      margin: 20px 0;
+    }
+    .info {
+      margin: 10px 0;
+      font-weight: 500;
+    }
+    #message {
+      font-weight: bold;
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+    .win { background: #d4edda; color: #2e7d32; }
+    .lose { background: #f8d7da; color: #c62828; }
+    .emoji {
+      font-size: 48px;
+      margin: 20px 0;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-box">
+    <h2>Tebak Nama Buah</h2>
+    <div class="emoji">🍍</div>
+    <input type="text" id="namaPemain" placeholder="Masukkan nama kamu" />
+    <div id="wordDisplay">_ _ _ _</div>
+    <input type="text" id="letterInput" maxlength="1" placeholder="Huruf" />
+    <br>
+    <button class="btn" onclick="tebakHuruf()">Tebak</button>
+    <button class="btn" onclick="mulaiUlang()">Main Ulang</button>
+    <p class="info" id="percobaan">Percobaan tersisa: 6</p>
+    <p class="info" id="riwayat">Huruf ditebak: -</p>
+    <p class="info" id="timer">Waktu: 60 detik</p>
+    <div id="message"></div>
+  </div>
+
+  <audio id="soundWin" src="success.mp3"></audio>
+  <audio id="soundLose" src="fail.mp3"></audio>
+  <audio id="soundClick" src="click.mp3"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script>
+    const daftarBuah = ["apel", "pisang", "jeruk", "mangga", "nanas", "pepaya", "durian"];
+    let kata = "", jawaban = [], percobaan = 0, waktu = 60;
+    const maxPercobaan = 6;
+    let hurufTebakan = [], timerInterval;
+
+    const display = document.getElementById("wordDisplay");
+    const percobaanTeks = document.getElementById("percobaan");
+    const riwayatTeks = document.getElementById("riwayat");
+    const timerTeks = document.getElementById("timer");
+    const message = document.getElementById("message");
+    const winSound = document.getElementById("soundWin");
+    const loseSound = document.getElementById("soundLose");
+    const clickSound = document.getElementById("soundClick");
+
+    function mulaiGame() {
+      kata = daftarBuah[Math.floor(Math.random() * daftarBuah.length)];
+      jawaban = Array(kata.length).fill("_");
+      percobaan = 0;
+      waktu = 60;
+      hurufTebakan = [];
+      clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 1000);
+      updateTampilan();
+      message.textContent = "";
+      message.className = "";
+    }
+
+    function updateTimer() {
+      waktu--;
+      updateTampilan();
+      if (waktu <= 0) kalah("Waktu habis! Jawabannya: " + kata);
+    }
+
+    function updateTampilan() {
+      display.textContent = jawaban.join(" ");
+      percobaanTeks.textContent = `Percobaan tersisa: ${maxPercobaan - percobaan}`;
+      riwayatTeks.textContent = `Huruf ditebak: ${hurufTebakan.join(", ") || "-"}`;
+      timerTeks.textContent = `Waktu: ${waktu} detik`;
+    }
+
+    function tebakHuruf() {
+      const input = document.getElementById("letterInput");
+      const huruf = input.value.toLowerCase();
+      input.value = "";
+      clickSound.play();
+
+      if (!huruf.match(/[a-z]/) || huruf.length !== 1) {
+        alert("Masukkan satu huruf a-z!");
+        return;
+      }
+      if (hurufTebakan.includes(huruf)) {
+        alert("Huruf sudah ditebak!");
+        return;
+      }
+      hurufTebakan.push(huruf);
+
+      let benar = false;
+      for (let i = 0; i < kata.length; i++) {
+        if (kata[i] === huruf) {
+          jawaban[i] = huruf;
+          benar = true;
+        }
+      }
+      if (!benar) percobaan++;
+      updateTampilan();
+
+      if (jawaban.join("") === kata) menang();
+      else if (percobaan >= maxPercobaan) kalah("Kamu kalah! Jawabannya: " + kata);
+    }
+
+    function menang() {
+      clearInterval(timerInterval);
+      message.textContent = "Selamat! Kamu berhasil.";
+      message.className = "win";
+      winSound.play();
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      simpanSkor();
+    }
+
+    function kalah(teks) {
+      clearInterval(timerInterval);
+      message.textContent = teks;
+      message.className = "lose";
+      loseSound.play();
+    }
+
+    function simpanSkor() {
+      const nama = document.getElementById("namaPemain").value.trim();
+      if (!nama) return;
+      const waktuMain = new Date().toLocaleString();
+      const skor = (maxPercobaan - percobaan) * 10 + waktu;
+      const data = JSON.parse(localStorage.getItem("leaderboardBuah")) || [];
+      data.push({ nama, skor, waktu: waktuMain });
+      localStorage.setItem("leaderboardBuah", JSON.stringify(data));
+    }
+
+    function mulaiUlang() {
+      mulaiGame();
+    }
+
+    mulaiGame();
+  </script>
+</body>
+</html>

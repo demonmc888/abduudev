@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda - AbduDev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <a href="home.html" class="logo">
+        <img src="logo.jpg" alt="Logo"> AbduDev
+      </a>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="about.html">Tentang</a>
+        <a href="contact.html">Kontak</a>
+        <a href="todo.html">To-Do</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="pelajar.html">Belajar</a>
+      </nav>
+    </div>
+  </header>
+  <section class="search-section">
+  <div class="search-box">
+   <input type="text" placeholder="Cari sesuatu..." id="searchBox" />
+<button onclick="handleSearch()">Cari</button>
+  </div>
+</section>
+
+  <img src="intro.jpg" alt="Deskripsi gambar" width="100%">
+
+  <section>
+    <h2>Selamat Datang</h2>
+    <p>Halo! Saya <strong>Abdu</strong>, web developer yang suka bikin tampilan web menarik dan interaktif.</p>
+    <p>Kalian bisa menikmati dan mencari hal-hal yang baru disitus ini</p>
+  </section>
+  <section>
+    <div style="text-align: center; margin-top: 20px;">
+  <a href="todo.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
+    Coba Aplikasi To-Do List
+  </a>
+  <p> 
+  </p>
+  <a href="tebak-buah.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
+    Coba Tebak-Buah
+  </a>
+    <a href="jadwalsholat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
+    Jadwal Sholat
+  </a>
+</div>
+  <h2>Proyek Saya</h2>
+  <input type="text" placeholder="Cari proyek..." id="searchInput" onkeyup="filterList()" />
+
+  <ul id="projectList">
+    <li>Tebak Kata <a href="tebak-buah.html" target="_blank">[Lihat]</a></li>
+    <ul id="projectList">
+  <li>Aplikasi To-Do List <a href="todo.html" target="_blank">[Lihat]</a></li>
+  <ul id="projectList">
+  <li>JadwalSholat <a href="jadwalsholat.html" target="_blank">[Lihat]</a></li>
+</ul>
+</section>
+
+  <footer>
+    <p>&copy; 2025 AbduDev. All rights reserved.</p>
+  </footer>
+<script>
+  // Fitur 1: Tombol "Cari" (cuma munculin alert)
+  function handleSearch() {
+    const query = document.getElementById('searchBox').value.trim();
+    if (query === '') {
+      alert("Masukkan kata kunci pencarian!");
+    } else {
+      alert("Kamu mencari: " + query);
+    }
+  }
+
+  // Fitur 2: Filter daftar proyek (real-time saat ngetik)
+  function filterList() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('#projectList li');
+
+    items.forEach((item) => {
+      const text = item.textContent.toLowerCase();
+      item.style.display = text.includes(input) ? 'list-item' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

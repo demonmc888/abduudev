@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Player Muter</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #141e30, #243b55);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .player {
+      background: #1c2738;
+      padding: 30px;
+      border-radius: 25px;
+      width: 320px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+
+    .cover {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      animation: none;
+      transition: transform 0.3s ease;
+    }
+
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rotating {
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+      margin-bottom: 20px;
+    }
+
+    .song-list {
+      text-align: left;
+    }
+
+    .song {
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .song:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="player">
+    <div class="cover" id="coverWrapper">
+      <img id="coverImage" src="cover1.jpg" alt="Cover">
+    </div>
+    <div class="title" id="songTitle">Lagu 1 - Judul Lagu Pertama</div>
+    <audio id="audioPlayer" controls>
+      <source id="audioSource" src="lagu1.mp3" type="audio/mpeg">
+      Browser ente nggak support audio.
+    </audio>
+
+    <div class="song-list">
+      <div class="song" onclick="playSong('bunga.mp3', 'Lagu 1 - BungaMaaf', 'bungamaaf.jpg')">Lagu 1 - BungaMaaf</div>
+      <div class="song" onclick="playSong('apo.mp3', 'Lagu 2 - BungaAbadi', 'bungaabadi.jpg')">Lagu 2 - BungaAbadi</div>
+      <div class="song" onclick="playSong('lagu3.mp3', 'Lagu 3 - Judul Lagu Ketiga', 'cover3.jpg')">Lagu 3 - Judul Lagu Ketiga</div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById("audioPlayer");
+    const cover = document.getElementById("coverWrapper");
+
+    // Muter saat lagu diputar
+    audio.addEventListener("play", () => {
+      cover.classList.add("rotating");
+    });
+
+    // Berhenti muter saat pause
+    audio.addEventListener("pause", () => {
+      cover.classList.remove("rotating");
+    });
+
+    function playSong(file, title, coverImg) {
+      const audioSource = document.getElementById("audioSource");
+      const songTitle = document.getElementById("songTitle");
+      const coverImage = document.getElementById("coverImage");
+
+      audioSource.src = file;
+      songTitle.textContent = title;
+      coverImage.src = coverImg;
+
+      audio.load();
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
