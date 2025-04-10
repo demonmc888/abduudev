@@ -1,0 +1,236 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curhatin Aja</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom right, #2c3e50, #3498db);
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    header {
+      padding: 1rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      margin-top: 2rem;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      border: none;
+      resize: none;
+      font-size: 1rem;
+    }
+    button {
+      padding: 0.8rem 2rem;
+      border: none;
+      background: #1abc9c;
+      color: white;
+      font-size: 1rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .response, .poem-box, .audio-box, .community-box, .bonus-box, .gif-box, .hug-box {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0.5rem;
+    }
+    .quote-box, .emoji-box, .motivation-card {
+      margin-top: 1rem;
+      text-align: center;
+      color: #ecf0f1;
+    }
+    .emoji-box {
+      font-size: 2rem;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #ccc;
+      padding-bottom: 2rem;
+    }
+    audio {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Curhatin Aja</h1>
+    <p>Tempat curhat bebas, tanpa dihakimi.</p>
+  </header>  <div class="container">
+    <h2>Mood Kamu Hari Ini?</h2>
+    <select id="mood">
+      <option value="senang">Senang</option>
+      <option value="sedih">Sedih</option>
+      <option value="galau">Galau</option>
+      <option value="marah">Marah</option>
+      <option value="bingung">Bingung</option>
+    </select><h2 style="margin-top: 1rem;">Tulis Curhatan Kamu</h2>
+<textarea id="curhat" placeholder="Tulis apa pun yang kamu rasain di sini..."></textarea>
+<button onclick="kirimCurhat()">Kirim</button>
+
+<div class="emoji-box" id="emojiMood"></div>
+<div class="response" id="balasanBot"></div>
+<div class="quote-box" id="quoteHarian"></div>
+<div class="motivation-card" id="motivationCard"></div>
+<div class="poem-box" id="puisiPenyemangat"></div>
+<div class="audio-box">
+  <h3>Musik Relaksasi:</h3>
+  <audio controls>
+    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+</div>
+<!-- Kode sebelumnya tetap --><!-- Tambahan fitur baru di bawah ini --><!-- Tambahan: Curhat Suara (Prototype) --><div class="container">
+  <div class="audio-box">
+    <h3>Curhat Lewat Suara (Coming Soon)</h3>
+    <p><em>Rekam suara kamu dan ceritakan isi hatimu. Fitur ini sedang dikembangkan!</em></p>
+    <button disabled>Mulai Rekam (prototype)</button>
+  </div>
+</div><!-- Tambahan: Background Musik Personal --><div class="container">
+  <div class="audio-box">
+    <h3>Musik Pilihan Kamu</h3>
+    <select onchange="gantiMusik(this.value)">
+      <option value="relax">Relaksasi</option>
+      <option value="happy">Happy Mood</option>
+      <option value="calm">Calm Mind</option>
+    </select>
+    <audio id="musikPersonal" controls>
+      <source id="musikSource" src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+      Browser tidak mendukung audio.
+    </audio>
+  </div>
+</div><!-- Tambahan: AI Pendengar --><div class="container">
+  <div class="response">
+    <h3>AI Pendengar (Simulasi)</h3>
+    <p><em>"Aku dengerin kamu, dan kamu berhak merasa seperti itu. Gimana kalau kita hadapi bareng-bareng?"</em></p>
+  </div>
+</div><!-- Tambahan: Forum Mini --><div class="container">
+  <div class="community-box">
+    <h3>Forum Mini (Tanya & Berbagi)</h3>
+    <ul>
+      <li><strong>Anon 1:</strong> Gimana cara ngilangin rasa kecewa?</li>
+      <li><strong>Anon 2:</strong> Aku butuh teman cerita, ada yang mau dengerin?</li>
+    </ul>
+    <p><em>Fitur forum penuh akan segera hadir!</em></p>
+  </div>
+</div><script>
+  function gantiMusik(val) {
+    const player = document.getElementById('musikPersonal');
+    const source = document.getElementById('musikSource');
+    if (val === 'happy') {
+      source.src = 'https://www.bensound.com/bensound-music/bensound-funky-element.mp3';
+    } else if (val === 'calm') {
+      source.src = 'https://www.bensound.com/bensound-music/bensound-sunny.mp3';
+    } else {
+      source.src = 'https://www.bensound.com/bensound-music/bensound-slowmotion.mp3';
+    }
+    player.load();
+    player.play();
+  }
+</script>
+<div class="community-box">
+  <h3>Komunitas Anonim:</h3>
+  <p><em>"Kamu nggak sendiri. Banyak yang ngerasa sama."</em></p>
+  <p><em>"Aku juga lagi berjuang. Semangat bareng yuk."</em></p>
+</div>
+<div class="gif-box" id="gifPenghibur"></div>
+<div class="hug-box" id="pelukanVirtual"></div>
+
+  </div>  <div class="footer">Curhatin Aja © 2025 – Privasi Dijaga | Powered by Semangat</div>  <script>
+    const quotes = [
+      "Hidup itu bukan tentang kuat terus, tapi berani jalan walau lelah.",
+      "Jangan biarkan kesedihan hari ini mencuri senyum hari esok.",
+      "Setiap luka punya cerita, dan setiap cerita layak didengar.",
+      "Kamu hebat karena masih bertahan sejauh ini."
+    ];
+
+    const motivasi = [
+      "Kamu nggak sendiri. Banyak yang berjuang seperti kamu.",
+      "Napasmu hari ini adalah bukti kekuatanmu.",
+      "Kamu layak bahagia, walaupun hari ini berat.",
+      "Pelan-pelan nggak apa-apa, asal terus jalan."
+    ];
+
+    const puisi = [
+      "Langit gelap tak selalu murung, kadang ia hanya ingin meneduhkanmu sejenak.",
+      "Meski luka tak tampak, hati tahu bagaimana rasanya.",
+      "Jalanmu tak selalu mulus, tapi setiap langkah tetap berarti.",
+      "Semesta mendengarkan, meski dalam diam."
+    ];
+
+    const gifMap = {
+      sedih: "https://media.giphy.com/media/j5QcmXoFWl5mI/giphy.gif",
+      marah: "https://media.giphy.com/media/3oz8xKaR836UJOYeOc/giphy.gif",
+      galau: "https://media.giphy.com/media/3o6ZsYJjsrmkMDJx7e/giphy.gif"
+    };
+
+    const pelukanMap = {
+      sedih: "*Peluk virtual dari aku buat kamu*",
+      galau: "Aku di sini kalau kamu butuh tempat cerita.",
+      marah: "Tarik napas... hembuskan... aku temenin kamu."
+    };
+
+    const emojiMoodMap = {
+      senang: "😊", sedih: "😢", galau: "🤔", marah: "😠", bingung: "😵"
+    };
+
+    const botBalasan = {
+      senang: "Wah senangnya denger kabar baik dari kamu! Cerita yuk~",
+      sedih: "Aku ngerti kok, kadang hidup emang nggak mudah. Cerita aja ya~",
+      galau: "Hmm... hati emang ribet ya. Yuk bagi ceritamu ke aku~",
+      marah: "Wah... pasti berat ya. Coba cerita, siapa tahu lega dikit.",
+      bingung: "Kalau pikiran lagi kusut, cerita bisa bantu. Ayo curhat ke aku~"
+    };
+
+    function kirimCurhat() {
+      const mood = document.getElementById('mood').value;
+      const teks = document.getElementById('curhat').value.trim();
+      const bot = document.getElementById('balasanBot');
+      const quote = document.getElementById('quoteHarian');
+      const emoji = document.getElementById('emojiMood');
+      const card = document.getElementById('motivationCard');
+      const puisiBox = document.getElementById('puisiPenyemangat');
+      const gifBox = document.getElementById('gifPenghibur');
+      const hugBox = document.getElementById('pelukanVirtual');
+
+      if (!teks) {
+        bot.innerHTML = '<em>Tulisanmu kosong. Cerita dulu yuk~</em>';
+        return;
+      }
+
+      bot.innerHTML = `<strong>Bot:</strong> ${botBalasan[mood]}<br><br><strong>Kamu:</strong> ${teks}`;
+      emoji.innerText = emojiMoodMap[mood];
+      quote.innerText = `\"${quotes[Math.floor(Math.random() * quotes.length)]}\"`;
+      card.innerText = motivasi[Math.floor(Math.random() * motivasi.length)];
+      puisiBox.innerHTML = `<em>\"${puisi[Math.floor(Math.random() * puisi.length)]}\"</em>`;
+      gifBox.innerHTML = gifMap[mood] ? `<img src="${gifMap[mood]}" style="width:100%;border-radius:1rem;">` : '';
+      hugBox.innerHTML = pelukanMap[mood] ? `<strong>${pelukanMap[mood]}</strong>` : '';
+
+      document.getElementById('curhat').value = '';
+    }
+  </script></body>
+</html>
