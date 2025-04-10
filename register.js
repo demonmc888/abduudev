@@ -16,5 +16,5 @@ document.getElementById("registerForm").addEventListener("submit", function(e) {
   localStorage.setItem("users", JSON.stringify(users));
 
   document.getElementById("message").textContent = "Registrasi berhasil! Arahkan ke login...";
-  setTimeout(() => window.location.href = "index.html", 1500);
+  setTimeout(() => window.location.href = "loginkom.html", 1500);
 });
