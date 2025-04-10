@@ -1,10 +1,128 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Beranda - AbduDev</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #222;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 30px;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .search-section {
+      background: #e9ecef;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 60%;
+      max-width: 300px;
+    }
+
+    .search-box button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    .btn {
+      margin: 5px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,22 +131,25 @@
       <a href="home.html" class="logo">
         <img src="logo.jpg" alt="Logo"> AbduDev
       </a>
-      <nav>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="about.html">Tentang</a>
         <a href="contact.html">Kontak</a>
         <a href="todo.html">To-Do</a>
         <a href="leaderboard.html">Leaderboard</a>
         <a href="pelajar.html">Belajar</a>
+        <a href="marketdu.html">SHOP</a>
       </nav>
     </div>
   </header>
+
   <section class="search-section">
-  <div class="search-box">
-   <input type="text" placeholder="Cari sesuatu..." id="searchBox" />
-<button onclick="handleSearch()">Cari</button>
-  </div>
-</section>
+    <div class="search-box">
+      <input type="text" placeholder="Cari sesuatu..." id="searchBox" />
+      <button onclick="handleSearch()">Cari</button>
+    </div>
+  </section>
 
   <img src="intro.jpg" alt="Deskripsi gambar" width="100%">
 
@@ -37,60 +158,55 @@
     <p>Halo! Saya <strong>Abdu</strong>, web developer yang suka bikin tampilan web menarik dan interaktif.</p>
     <p>Kalian bisa menikmati dan mencari hal-hal yang baru disitus ini</p>
   </section>
+
   <section>
     <div style="text-align: center; margin-top: 20px;">
-  <a href="todo.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
-    Coba Aplikasi To-Do List
-  </a>
-  <p> 
-  </p>
-  <a href="tebak-buah.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
-    Coba Tebak-Buah
-  </a>
-    <a href="jadwalsholat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
-    Jadwal Sholat
-  </a>
-  <p></p>
-  <a href="playmusic.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">
-    PLAYLAGU
-  </a>
-</div>
-  <h2>Proyek Saya</h2>
-  <input type="text" placeholder="Cari proyek..." id="searchInput" onkeyup="filterList()" />
+      <a href="todo.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Coba Aplikasi To-Do List</a>
+      <p></p>
+      <a href="tebak-buah.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Coba Tebak-Buah</a>
+      <a href="jadwalsholat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Jadwal Sholat</a>
+      <p></p>
+      <a href="playmusic.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">PLAYLAGU</a>
+    </div>
 
-  <ul id="projectList">
-    <li>Tebak Kata <a href="tebak-buah.html" target="_blank">[Lihat]</a></li>
+    <h2>Proyek Saya</h2>
+    <input type="text" placeholder="Cari proyek..." id="searchInput" onkeyup="filterList()" />
+
     <ul id="projectList">
-  <li>Aplikasi To-Do List <a href="todo.html" target="_blank">[Lihat]</a></li>
-  <ul id="projectList">
-  <li>JadwalSholat <a href="jadwalsholat.html" target="_blank">[Lihat]</a></li>
-</ul>
-</section>
+      <li>Tebak Kata <a href="tebak-buah.html" target="_blank">[Lihat]</a></li>
+      <li>Aplikasi To-Do List <a href="todo.html" target="_blank">[Lihat]</a></li>
+      <li>JadwalSholat <a href="jadwalsholat.html" target="_blank">[Lihat]</a></li>
+    </ul>
+  </section>
 
   <footer>
     <p>&copy; 2025 AbduDev. All rights reserved.</p>
   </footer>
-<script>
-  // Fitur 1: Tombol "Cari" (cuma munculin alert)
-  function handleSearch() {
-    const query = document.getElementById('searchBox').value.trim();
-    if (query === '') {
-      alert("Masukkan kata kunci pencarian!");
-    } else {
-      alert("Kamu mencari: " + query);
+
+  <script>
+    function handleSearch() {
+      const query = document.getElementById('searchBox').value.trim();
+      if (query === '') {
+        alert("Masukkan kata kunci pencarian!");
+      } else {
+        alert("Kamu mencari: " + query);
+      }
     }
-  }
 
-  // Fitur 2: Filter daftar proyek (real-time saat ngetik)
-  function filterList() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const items = document.querySelectorAll('#projectList li');
+    function filterList() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('#projectList li');
+      items.forEach((item) => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(input) ? 'list-item' : 'none';
+      });
+    }
 
-    items.forEach((item) => {
-      const text = item.textContent.toLowerCase();
-      item.style.display = text.includes(input) ? 'list-item' : 'none';
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
     });
-  }
-</script>
+  </script>
 </body>
 </html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AbduStudio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+    body { background: #1e1e2f; color: #fff; line-height: 1.6; }
+    header { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+    header h1 { font-size: 3em; margin-bottom: 10px; animation: fadeIn 1s ease-in; }
+    header p { color: #ccc; font-size: 1.2em; }
+
+    section { padding: 50px 20px; max-width: 1100px; margin: auto; }
+    h2 { text-align: center; font-size: 2.5em; margin-bottom: 30px; color: #00ffc8; }
+
+    .gallery, .packages, .testimonials {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+    }
+
+    .gallery img {
+      width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover { transform: scale(1.05); }
+
+    .package, .testimonial {
+      background: #2b2b3c; padding: 20px; border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .package:hover, .testimonial:hover {
+      transform: translateY(-5px);
+    }
+    .package h3, .testimonial h3 { color: #00ffc8; margin-bottom: 10px; }
+    .testimonial p { font-style: italic; color: #ddd; }
+
+    form {
+      display: flex; flex-direction: column; gap: 15px; max-width: 500px;
+      margin: auto; text-align: left;
+    }
+    form input, form textarea {
+      padding: 10px; border: none; border-radius: 8px;
+      background: #444; color: white;
+    }
+    form button {
+      padding: 12px; border: none; border-radius: 8px;
+      background: #00ffc8; color: #000; font-weight: bold; cursor: pointer;
+      transition: background 0.3s;
+    }
+    form button:hover { background: #00cfa6; }
+
+    footer {
+      text-align: center; padding: 30px 20px; background: #111;
+      color: #aaa; font-size: 0.9em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AbduStudio</h1>
+  <p>Spesialis Desain Logo & Kreatif Profesional</p>
+</header>
+
+<section>
+  <h2>Galeri Desain</h2>
+  <div class="gallery">
+    <img src="logo1.jpg" alt="Logo 1">
+    <img src="logo2.jpg" alt="Logo 2">
+    <img src="logo3.jpg" alt="Logo 3">
+  </div>
+</section>
+
+<section>
+  <h2>Paket Harga</h2>
+  <div class="packages">
+    <div class="package">
+      <h3>Paket Basic</h3>
+      <p>Logo simple, 2 revisi, JPG/PNG</p>
+      <p><strong>Rp 10.000</strong></p>
+    </div>
+    <div class="package">
+      <h3>Paket Premium</h3>
+      <p>Logo premium, 5 revisi, file .AI/.PSD</p>
+      <p><strong>Rp 100.000</strong></p>
+    </div>
+    <div class="package">
+      <h3>Paket Custom</h3>
+      <p>Desain sesuai permintaan (poster, feed IG, dll)</p>
+      <p><strong>Rp 50.000+</strong></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Testimoni Klien</h2>
+  <div class="testimonials">
+    <div class="testimonial">
+      <h3>@dina_craft</h3>
+      <p>"Logo-nya keren banget dan cepat selesai. Recommended banget!"</p>
+    </div>
+    <div class="testimonial">
+      <h3>@sinar.id</h3>
+      <p>"Desain feed Instagram bikin brandku naik kelas!"</p>
+    </div>
+    <div class="testimonial">
+      <h3>@posterku</h3>
+      <p>"Desain banner promo langsung disukai pelanggan. Keren!"</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Order Sekarang</h2>
+  <form action="https://wa.me/6281385658292" onsubmit="return submitForm()">
+    <input type="text" id="name" placeholder="Nama Kamu" required>
+    <input type="text" id="service" placeholder="Jenis Desain (Logo, Poster, Feed IG)" required>
+    <textarea id="desc" rows="4" placeholder="Ceritakan detail kebutuhanmu..." required></textarea>
+    <button type="submit">Kirim ke WhatsApp</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 AbduStudio. Semua hak cipta dilindungi.
+</footer>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById('name').value;
+    const service = document.getElementById('service').value;
+    const desc = document.getElementById('desc').value;
+    const url = `https://wa.me/6281234567890?text=Halo%20LogoKita%20Studio!%0ASaya%20${name}%20ingin%20order%20${service}.%0ADetail:%20${desc}`;
+    window.open(url, '_blank');
+    return false;
+  }
+</script>
+
+</body>
+</html>

@@ -1,10 +1,96 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tentang - AbduDev</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #222;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 30px;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background: #007bff;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+    section {
+      padding: 20px;
+    }
+    .socials a {
+      margin: 10px;
+      font-size: 24px;
+      color: #007bff;
+      text-decoration: none;
+    }
+    .socials a:hover {
+      color: #0056b3;
+    }
+    footer {
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,38 +98,42 @@
       <a href="home.html" class="logo">
         <img src="logo.jpg" alt="Logo"> AbduDev
       </a>
-      <nav>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="about.html">Tentang</a>
         <a href="contact.html">Kontak</a>
-         <a href="todo.html">To-Do</a>
-         <a href="leaderboard.html">Leaderboard</a>
-          <a href="pelajar.html">Belajar</a>
+        <a href="todo.html">To-Do</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="pelajar.html">Belajar</a>
+        <a href="marketdu.html">SHOP</a>
       </nav>
     </div>
   </header>
-  <section class="search-section">
-  <div class="search-box">
-    <input type="text" placeholder="Cari sesuatu..." id="searchInput" />
-    <button onclick="handleSearch()">Cari</button>
-  </div>
-</section>
+
   <section>
     <h2>Tentang Saya</h2>
     <p>Saya adalah seorang pengembang web yang fokus pada frontend. Saya suka desain yang bersih dan pengalaman pengguna yang baik. Saya menguasai HTML, CSS, dan JavaScript.</p>
     <h2>SOSIAL MEDIA</h2>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <div class="socials">
-  <a href="https://instagram.com/abdullsalzz" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://github.com/demonmc888" target="_blank"><i class="fab fa-github"></i></a>
-  <a href="https://facebook.com/abdus" target="_blank"><i class="fab fa-facebook"></i></a>
-  <a href="https://tiktok.com/@abducuky" target="_blank"><i class="fab fa-tiktok"></i></a>
-  <a href="https://youtube.com/@ownersweetnetwork" target="_blank"><i class="fab fa-youtube"></i></a>
-</div>
+      <a href="https://instagram.com/abdullsalzz" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/demonmc888" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://facebook.com/abdus" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://tiktok.com/@abducuky" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://youtube.com/@demonzmcc" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div>
   </section>
 
   <footer>
     <p>&copy; 2025 AbduDev. All rights reserved.</p>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>

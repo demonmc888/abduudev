@@ -1,10 +1,102 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kontak - AbduDev</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #222;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 30px;
+    }
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background: #007bff;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+    section {
+      padding: 20px;
+    }
+    form input, form textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    form button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -12,13 +104,15 @@
       <a href="home.html" class="logo">
         <img src="logo.jpg" alt="Logo"> AbduDev
       </a>
-      <nav>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <nav id="nav-menu">
         <a href="index.html">Home</a>
         <a href="about.html">Tentang</a>
         <a href="contact.html">Kontak</a>
-         <a href="todo.html">To-Do</a>
-         <a href="leaderboard.html">Leaderboard</a>
-          <a href="pelajar.html">Belajar</a>
+        <a href="todo.html">To-Do</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="pelajar.html">Belajar</a>
+        <a href="marketdu.html">SHOP</a>
       </nav>
     </div>
   </header>
@@ -26,9 +120,9 @@
   <section>
     <h2>Hubungi Saya</h2>
     <form id="formKontak">
-      <input type="text" id="nama" placeholder="Nama Anda" required /><br><br>
-      <input type="email" id="email" placeholder="Email Anda" required /><br><br>
-      <textarea id="pesan" placeholder="Pesan Anda" required></textarea><br><br>
+      <input type="text" id="nama" placeholder="Nama Anda" required />
+      <input type="email" id="email" placeholder="Email Anda" required />
+      <textarea id="pesan" placeholder="Pesan Anda" required></textarea>
       <button type="submit">Kirim</button>
     </form>
   </section>
@@ -38,6 +132,12 @@
   </footer>
 
   <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+
     document.getElementById('formKontak').addEventListener('submit', function(e) {
       e.preventDefault();
       const nama = document.getElementById('nama').value.trim();
