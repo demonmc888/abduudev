@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profil</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    #toast {
+      transition: all 0.4s ease;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 text-white flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md relative">
+    <h1 class="text-3xl font-bold mb-6 text-center">Edit Profil</h1>
+
+    <form id="editForm" class="space-y-4">
+      <div>
+        <label for="editName" class="block mb-1 font-semibold">Nama Lengkap</label>
+        <input type="text" id="editName" class="w-full p-2 rounded text-black" required>
+      </div>
+      <div>
+        <label for="editEmail" class="block mb-1 font-semibold">Email</label>
+        <input type="email" id="editEmail" class="w-full p-2 rounded text-black" required>
+      </div>
+      <div>
+        <label for="editPassword" class="block mb-1 font-semibold">Ganti Password (opsional)</label>
+        <input type="password" id="editPassword" class="w-full p-2 rounded text-black" placeholder="Kosongkan jika tidak ingin mengganti">
+      </div>
+      <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded w-full">Simpan Perubahan</button>
+    </form>
+
+    <p class="text-center mt-6">
+      <a href="dashboard.html" class="text-blue-300 underline hover:text-blue-400">Kembali ke Dashboard</a>
+    </p>
+
+    <!-- TOAST -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg hidden">
+      Profil berhasil diperbarui!
+    </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (!user) window.location.href = "loginkom.html";
+
+    // Isi data lama
+    const nameInput = document.getElementById("editName");
+    const emailInput = document.getElementById("editEmail");
+    const passwordInput = document.getElementById("editPassword");
+    const toast = document.getElementById("toast");
+
+    nameInput.value = user.name;
+    emailInput.value = user.email;
+
+    // Fungsi toast popup
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.remove("hidden");
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3000);
+    }
+
+    // Simpan perubahan
+    document.getElementById("editForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const newName = nameInput.value.trim();
+      const newEmail = emailInput.value.trim();
+      const newPassword = passwordInput.value.trim() || user.password;
+
+      // Validasi email tidak boleh sama dengan milik user lain
+      const emailConflict = allUsers.some(u => u.email === newEmail && u.email !== user.email);
+      if (emailConflict) {
+        showToast("Email sudah digunakan oleh user lain!");
+        return;
+      }
+
+      // Update data di array user
+      const updatedUsers = allUsers.map(u => {
+        if (u.email === user.email) {
+          return { ...u, name: newName, email: newEmail, password: newPassword };
+        }
+        return u;
+      });
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      localStorage.setItem("loggedInUser", JSON.stringify({ name: newName, email: newEmail, password: newPassword }));
+
+      showToast("Profil berhasil diperbarui!");
+    });
+  </script>
+</body>
+</html>

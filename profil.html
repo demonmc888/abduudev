@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil Pengguna</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
+    <div class="w-24 h-24 mx-auto rounded-full bg-gray-700 overflow-hidden mb-4">
+      <img id="avatarImage" class="w-full h-full object-cover hidden" />
+      <div id="avatarFallback" class="w-full h-full flex items-center justify-center text-3xl font-bold text-white"></div>
+    </div>
+    
+    <h1 id="userName" class="text-3xl font-bold mb-1">Nama User</h1>
+    <p id="userEmail" class="text-gray-400 text-sm mb-4">Email user</p>
+
+    <div class="grid grid-cols-2 gap-4 text-sm text-left bg-gray-700 p-4 rounded-xl">
+      <p>Topik:</p><p id="userThreads" class="text-right font-bold">0</p>
+      <p>Balasan:</p><p id="userReplies" class="text-right font-bold">0</p>
+      <p>Bergabung:</p><p id="userJoined" class="text-right font-bold">2025</p>
+    </div>
+
+    <a href="dashboard.html" class="inline-block mt-6 bg-purple-500 hover:bg-purple-600 px-6 py-2 rounded-full font-bold">Kembali</a>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) window.location.href = "loginkom.html";
+
+    document.getElementById("userName").textContent = user.name;
+    document.getElementById("userEmail").textContent = user.email;
+
+    const avatarImg = document.getElementById("avatarImage");
+    const avatarFallback = document.getElementById("avatarFallback");
+
+    if (user.profilePic) {
+      avatarImg.src = user.profilePic;
+      avatarImg.classList.remove("hidden");
+      avatarFallback.style.display = "none";
+    } else {
+      avatarFallback.textContent = user.name[0].toUpperCase();
+    }
+
+    // Statistik
+    const threads = JSON.parse(localStorage.getItem("forumThreads")) || [];
+    let threadCount = 0, replyCount = 0;
+
+    threads.forEach(t => {
+      if (t.author === user.name) threadCount++;
+      t.replies.forEach(r => {
+        if (r.user === user.name) replyCount++;
+      });
+    });
+
+    document.getElementById("userThreads").textContent = threadCount;
+    document.getElementById("userReplies").textContent = replyCount;
+    document.getElementById("userJoined").textContent = "2025"; // bisa dari waktu daftar nanti
+  </script>
+</body>
+</html>

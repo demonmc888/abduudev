@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Forum Diskusi</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-4">Forum Diskusi Komunitas</h1>
+
+    <form id="newThreadForm" class="mb-6 bg-gray-800 p-4 rounded">
+      <input type="text" id="threadTitle" placeholder="Judul Topik" class="w-full p-2 mb-2 text-black rounded" required>
+      <textarea id="threadContent" placeholder="Isi topik awal..." class="w-full p-2 text-black rounded" required></textarea>
+      <button type="submit" class="mt-2 bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">Posting</button>
+    </form>
+
+    <div id="threadList" class="space-y-4"></div>
+  </div>
+
+  <script src="forum.js"></script>
+</body>
+</html>

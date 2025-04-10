@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Komunitas</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-indigo-900 text-white min-h-screen flex items-center justify-center">
+
+  <div class="bg-gray-800 bg-opacity-80 p-10 rounded-3xl shadow-2xl w-full max-w-3xl text-center">
+    <!-- Avatar -->
+    <div class="w-24 h-24 mx-auto rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-3xl font-bold shadow-lg mb-4" id="avatar">
+      U
+    </div>
+
+    <!-- Info User -->
+    <h1 class="text-3xl font-extrabold" id="userName">User</h1>
+    <p id="userEmail" class="text-sm text-gray-300 mb-4">email@domain.com</p>
+
+    <!-- Statistik -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-white">
+      <div class="bg-indigo-700 p-4 rounded-xl shadow">
+        <p class="text-lg font-semibold">Topik</p>
+        <p class="text-3xl font-bold" id="threadCount">0</p>
+      </div>
+      <div class="bg-blue-600 p-4 rounded-xl shadow">
+        <p class="text-lg font-semibold">Balasan</p>
+        <p class="text-3xl font-bold" id="replyCount">0</p>
+      </div>
+      <div class="bg-green-600 p-4 rounded-xl shadow">
+        <p class="text-lg font-semibold">Gabung Sejak</p>
+        <p class="text-3xl font-bold" id="joinedDate">2025</p>
+      </div>
+    </div>
+
+    <!-- Tombol Navigasi -->
+    <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="forum.html" class="bg-yellow-400 text-black px-6 py-2 rounded-full font-bold hover:bg-yellow-300">Masuk Forum</a>
+      <a href="edit-profil.html" class="bg-gray-700 px-6 py-2 rounded-full font-bold hover:bg-gray-600">Edit Profil</a>
+      <a href="profil.html" class="bg-blue-500 px-6 py-2 rounded-full font-bold hover:bg-blue-600">Lihat Profil</a>
+      <button onclick="logout()" class="bg-red-600 px-6 py-2 rounded-full font-bold hover:bg-red-700">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) window.location.href = "loginkom.html";
+    
+    document.getElementById("userName").textContent = user.name;
+    document.getElementById("userEmail").textContent = user.email;
+    document.getElementById("avatar").textContent = user.name[0].toUpperCase();
+    document.getElementById("joinedDate").textContent = "2025"; // bisa disimpan saat register nanti
+
+    // Statistik forum
+    const threads = JSON.parse(localStorage.getItem("forumThreads")) || [];
+    let threadCount = 0, replyCount = 0;
+    threads.forEach(t => {
+      if (t.author === user.name) threadCount++;
+      t.replies.forEach(r => {
+        if (r.user === user.name) replyCount++;
+      });
+    });
+    document.getElementById("threadCount").textContent = threadCount;
+    document.getElementById("replyCount").textContent = replyCount;
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "loginkom.html";
+    }
+  </script>
+</body>
+</html>

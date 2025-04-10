@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Topik Forum</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+  <div class="max-w-3xl mx-auto">
+    <h1 id="threadTitle" class="text-3xl font-bold mb-2"></h1>
+    <p id="threadContent" class="mb-6 text-gray-300"></p>
+
+    <form id="replyForm" class="mb-6 bg-gray-800 p-4 rounded">
+      <textarea id="replyInput" placeholder="Tulis balasan..." class="w-full p-2 text-black rounded" required></textarea>
+      <button type="submit" class="mt-2 bg-green-500 hover:bg-green-600 px-4 py-2 rounded">Balas</button>
+    </form>
+
+    <div id="replies" class="space-y-4"></div>
+  </div>
+
+  <script src="forum.js"></script>
+</body>
+</html>
