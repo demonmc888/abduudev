@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daftar Akun Komunitas</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-purple-800 to-indigo-900 text-white flex items-center justify-center min-h-screen">
+
+  <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center mb-6">Daftar Akun</h1>
+
+    <form id="registerForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Nama Lengkap" class="w-full p-3 rounded bg-white bg-opacity-20 placeholder-white focus:outline-none" required>
+      <input type="email" id="email" placeholder="Email" class="w-full p-3 rounded bg-white bg-opacity-20 placeholder-white focus:outline-none" required>
+      <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded bg-white bg-opacity-20 placeholder-white focus:outline-none" required>
+      <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded font-bold">Daftar</button>
+    </form>
+
+    <p class="text-sm text-center mt-4">Sudah punya akun? <a href="loginkom.html" class="underline text-blue-300">Login di sini</a></p>
+
+    <p id="message" class="text-center mt-4 font-semibold"></p>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const emailExists = users.some(user => user.email === email);
+      if (emailExists) {
+        document.getElementById("message").textContent = "Email sudah terdaftar!";
+        return;
+      }
+
+      const newUser = { name, email, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+
+      document.getElementById("message").textContent = "Pendaftaran berhasil! Mengalihkan...";
+      setTimeout(() => window.location.href = "register.html", 1500);
+    });
+  </script>
+</body>
+</html>
