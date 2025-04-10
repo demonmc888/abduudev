@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Belajar Coding Dasar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    header {
+      background: #4f46e5;
+      color: white;
+      padding: 20px 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #e0e7ff;
+    }
+    .content {
+      background: white;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    pre {
+      background-color: #f3f4f6;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    img.code-preview {
+      max-width: 100%;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .quiz {
+      margin-top: 30px;
+    }
+    .question {
+      background-color: #f9fafb;
+      border-left: 6px solid #4f46e5;
+      margin-bottom: 25px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .question h3 {
+      margin-top: 0;
+    }
+    .question button {
+      padding: 10px 16px;
+      background-color: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 8px 6px 0 0;
+      transition: background 0.3s;
+    }
+    .question button:hover {
+      background-color: #3730a3;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #4f46e5;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Belajar Coding Dasar</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#html">HTML</a></li>
+          <li><a href="#css">CSS</a></li>
+          <li><a href="#js">JavaScript</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  <section id="home" class="hero">
+    <div class="container">
+      <h2>Selamat Datang!</h2>
+      <p>Website ini dibuat untuk membantu kamu belajar dasar-dasar pemrograman web mulai dari HTML, CSS, hingga JavaScript.</p>
+    </div>
+  </section>  <section id="html" class="content">
+    <div class="container">
+      <h2>HTML Dasar</h2>
+      <p>HTML (HyperText Markup Language) digunakan untuk membuat struktur halaman web. Berikut adalah beberapa tag dasar:</p>
+      <ul>
+        <li><strong>&lt;h1&gt; hingga &lt;h6&gt;</strong> — untuk judul</li>
+        <li><strong>&lt;p&gt;</strong> — untuk paragraf</li>
+        <li><strong>&lt;a&gt;</strong> — untuk membuat tautan</li>
+        <li><strong>&lt;img&gt;</strong> — untuk menampilkan gambar</li>
+        <li><strong>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</strong> — untuk membuat daftar</li>
+      </ul>
+      <pre><code>&lt;h1&gt;Halo Dunia&lt;/h1&gt;
+&lt;p&gt;Ini paragraf pertama saya&lt;/p&gt;
+&lt;a href="https://google.com" target="_blank"&gt;Kunjungi Google&lt;/a&gt;</code></pre>
+      <img src="https://i.imgur.com/tXx3GVP.png" alt="Contoh hasil HTML" class="code-preview">
+    </div>
+  </section>  <section id="css" class="content">
+    <div class="container">
+      <h2>CSS Dasar</h2>
+      <p>CSS (Cascading Style Sheets) digunakan untuk mendesain tampilan website. Berikut adalah beberapa properti umum:</p>
+      <ul>
+        <li><strong>color</strong> — mengatur warna teks</li>
+        <li><strong>background-color</strong> — mengatur warna latar</li>
+        <li><strong>font-size</strong> — mengatur ukuran teks</li>
+        <li><strong>margin</strong> dan <strong>padding</strong> — untuk mengatur jarak</li>
+        <li><strong>border</strong> — menambahkan garis tepi</li>
+      </ul>
+      <pre><code>h1 {
+  color: #1d4ed8;
+  font-size: 2em;
+  background-color: #e0f2fe;
+  padding: 10px;
+}</code></pre>
+      <img src="https://i.imgur.com/SuS4nbR.png" alt="Contoh hasil CSS" class="code-preview">
+    </div>
+  </section>  <section id="js" class="content">
+    <div class="container">
+      <h2>JavaScript Dasar</h2>
+      <p>JavaScript membuat website menjadi interaktif. Beberapa hal yang bisa dilakukan dengan JS:</p>
+      <ul>
+        <li>Manipulasi elemen HTML</li>
+        <li>Menanggapi event (klik, ketik, dll)</li>
+        <li>Validasi form</li>
+        <li>Mengambil data dari API</li>
+      </ul>
+      <pre><code>document.querySelector('h1').style.color = 'red';
+alert("Halo dunia!");</code></pre>
+      <img src="https://i.imgur.com/oRmXYnD.png" alt="Contoh hasil JavaScript" class="code-preview">
+    </div>
+  </section>  <section id="quiz" class="content quiz">
+    <div class="container">
+      <h2>Latihan Quiz</h2><!-- Soal 1 - 10 -->
+      <!-- Soal 1 - 10 --><div class="question">
+  <h3>1. Apa kepanjangan dari HTML?</h3>
+  <button onclick="checkAnswer(this, 'correct')">A. HyperText Markup Language</button>
+  <button onclick="checkAnswer(this, 'b')">B. Home Tool Markup Language</button>
+  <button onclick="checkAnswer(this, 'c')">C. Hyperlinks and Text Markup Language</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>2. Tag HTML untuk paragraf?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. &lt;h1&gt;</button>
+  <button onclick="checkAnswer(this, 'correct')">B. &lt;p&gt;</button>
+  <button onclick="checkAnswer(this, 'c')">C. &lt;div&gt;</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>3. Apa fungsi CSS?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. Menyusun struktur halaman</button>
+  <button onclick="checkAnswer(this, 'correct')">B. Mendesain tampilan halaman</button>
+  <button onclick="checkAnswer(this, 'c')">C. Menyimpan data website</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>4. Cara benar menulis komentar di CSS?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. <!-- komentar --></button>
+  <button onclick="checkAnswer(this, 'b')">B. // komentar</button>
+  <button onclick="checkAnswer(this, 'correct')">C. /* komentar */</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>5. Ekstensi file JavaScript adalah?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. .html</button>
+  <button onclick="checkAnswer(this, 'correct')">B. .js</button>
+  <button onclick="checkAnswer(this, 'c')">C. .css</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>6. Tag untuk membuat baris baru di HTML?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. &lt;hr&gt;</button>
+  <button onclick="checkAnswer(this, 'b')">B. &lt;span&gt;</button>
+  <button onclick="checkAnswer(this, 'correct')">C. &lt;br&gt;</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>7. Apa ekstensi file untuk CSS?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. .html</button>
+  <button onclick="checkAnswer(this, 'correct')">B. .css</button>
+  <button onclick="checkAnswer(this, 'c')">C. .js</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>8. Bagaimana menambahkan file CSS ke HTML?</h3>
+  <button onclick="checkAnswer(this, 'correct')">A. &lt;link rel="stylesheet" href="style.css"&gt;</button>
+  <button onclick="checkAnswer(this, 'b')">B. &lt;script src="style.css"&gt;&lt;/script&gt;</button>
+  <button onclick="checkAnswer(this, 'c')">C. &lt;css&gt;&lt;/css&gt;</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>9. Untuk apa atribut "alt" pada tag &lt;img&gt;?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. Mengatur ukuran gambar</button>
+  <button onclick="checkAnswer(this, 'b')">B. Menampilkan teks saat gambar gagal dimuat</button>
+  <button onclick="checkAnswer(this, 'correct')">C. Memberikan deskripsi gambar</button>
+  <div class="result"></div>
+</div>
+<div class="question">
+  <h3>10. Apa simbol untuk komentar di CSS?</h3>
+  <button onclick="checkAnswer(this, 'a')">A. // komentar</button>
+  <button onclick="checkAnswer(this, 'b')">B. &lt;!-- komentar --&gt;</button>
+  <button onclick="checkAnswer(this, 'correct')">C. /* komentar */</button>
+  <div class="result"></div>
+</div>
+  <!-- (Soal-soal dan tombol disertakan, sama seperti versi sebelumnya yang sudah lengkap dengan skor) -->
+
+  <!-- Soal-soal disisipkan di sini (telah diberikan sebelumnya) -->
+
+</div>
+
+  </section>  <footer>
+    <div class="container">
+      <p>&copy; 2025 Belajar Coding Dasar. Dibuat dengan semangat belajar!</p>
+    </div>
+  </footer>  <script>
+    let score = 0;
+    let totalQuestions = 10;
+    let answered = 0;
+
+    function checkAnswer(button, status) {
+      const resultBox = button.parentElement.querySelector(".result");
+      if (resultBox.textContent !== "") return;
+
+      if (status === 'correct') {
+        resultBox.textContent = 'Jawaban benar!';
+        resultBox.style.color = 'green';
+        score++;
+      } else {
+        resultBox.textContent = 'Jawaban salah, coba lagi!';
+        resultBox.style.color = 'red';
+      }
+
+      answered++;
+      if (answered === totalQuestions) {
+        setTimeout(() => {
+          alert(`Quiz selesai! Skor kamu: ${score}/${totalQuestions}`);
+        }, 300);
+      }
+    }
+  </script></body>
+</html>
