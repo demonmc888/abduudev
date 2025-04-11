@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Story - AbduDev
+  </title>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .story-container {
+      position: relative;
+      width: 360px;
+      height: 640px;
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-container img,
+    .story-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-info {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-info img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .user-info span {
+      font-weight: bold;
+    }
+
+    .next-btn {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+  </style>
+ </head>
+ <body>
+  <div class="story-container" id="storyViewer">
+   <div class="user-info" id="storyUser">
+    <img id="storyAvatar" src=""/>
+    <span id="storyUsername">
+    </span>
+   </div>
+   <button class="back-btn" onclick="prevStory()">
+    ‹
+   </button>
+   <button class="next-btn" onclick="nextStory()">
+    ›
+   </button>
+  </div>
+  <script>
+   const stories = JSON.parse(localStorage.getItem("stories") || "[]");
+  let currentIndex = 0;
+
+  function showStory(index) {
+    if (index < 0 || index >= stories.length) return;
+
+    const story = stories[index];
+    const container = document.getElementById("storyViewer");
+    const avatar = document.getElementById("storyAvatar");
+    const username = document.getElementById("storyUsername");
+
+    avatar.src = story.avatar || "https://via.placeholder.com/40";
+    username.textContent = story.username || "unknown";
+
+    container.querySelector("img, video")?.remove();
+    const media = document.createElement(story.type === "video" ? "video" : "img");
+    media.src = story.src;
+    if (story.type === "video") media.controls = true;
+    container.appendChild(media);
+  }
+
+  function nextStory() {
+    if (currentIndex < stories.length - 1) {
+      currentIndex++;
+      showStory(currentIndex);
+    }
+  }
+
+  function prevStory() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      showStory(currentIndex);
+    }
+  }
+
+  showStory(currentIndex);
+  </script>
+ </body>
+</html>

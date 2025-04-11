@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Profil - AbduDev
+  </title>
+  <style>
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: #fff;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .profile {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+    .profile img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .profile-info {
+      flex: 1;
+    }
+    .profile-info h2 {
+      margin: 0;
+      font-size: 26px;
+    }
+    .profile-stats {
+      margin-top: 10px;
+      display: flex;
+      gap: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img, .gallery video {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    AbduDev
+   </h1>
+   <a href="feed.html">
+    Feed
+   </a>
+  </header>
+  <section class="profile">
+   <img alt="Avatar" id="avatar" src="https://via.placeholder.com/120"/>
+   <div class="profile-info">
+    <h2 id="username">
+     AbduDev
+    </h2>
+    <div class="profile-stats">
+     <span>
+      <strong id="postCount">
+       0
+      </strong>
+      postingan
+     </span>
+     <span>
+      <strong>
+       120
+      </strong>
+      pengikut
+     </span>
+     <span>
+      <strong>
+       75
+      </strong>
+      mengikuti
+     </span>
+    </div>
+   </div>
+  </section>
+  <section class="gallery" id="gallery">
+   <!-- postingan akan ditampilkan di sini -->
+  </section>
+  <script>
+   // Load postingan dari localStorage
+  const gallery = document.getElementById("gallery");
+  const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+
+  document.getElementById("postCount").innerText = posts.length;
+
+  posts.forEach(post => {
+    const el = document.createElement(post.type === "video" ? "video" : "img");
+    el.src = post.src;
+    if (post.type === "video") el.controls = true;
+    el.onclick = () => {
+      localStorage.setItem("selectedPost", JSON.stringify(post));
+      window.location.href = "post.html";
+    };
+    gallery.appendChild(el);
+  });
+
+  // Optional: load user data
+  const user = JSON.parse(localStorage.getItem("user") || '{}');
+  if (user.username) {
+    document.getElementById("username").innerText = user.username;
+  }
+  if (user.avatar) {
+    document.getElementById("avatar").src = user.avatar;
+  }
+  </script>
+ </body>
+</html>

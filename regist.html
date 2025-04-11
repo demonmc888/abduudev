@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Registrasi - AbduDev
+  </title>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .register-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+    .register-box h2 {
+      margin-bottom: 20px;
+    }
+    .register-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .register-box button {
+      background: #3897f0;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .register-box a {
+      display: block;
+      margin-top: 10px;
+      color: #3897f0;
+      text-decoration: none;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="register-box">
+   <h2>
+    Daftar Akun
+   </h2>
+   <input id="username" placeholder="Username" required="" type="text"/>
+   <input id="email" placeholder="Email" required="" type="email"/>
+   <input id="password" placeholder="Password" required="" type="password"/>
+   <button onclick="register()">
+    Daftar
+   </button>
+   <a href="login.html">
+    Sudah punya akun?
+   </a>
+  </div>
+  <script>
+   function register() {
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (!username || !email || !password) {
+      alert("Semua field harus diisi!");
+      return;
+    }
+
+    const userData = {
+      username,
+      email,
+      password,
+      avatar: "https://via.placeholder.com/120"
+    };
+
+    localStorage.setItem("user", JSON.stringify(userData));
+    alert("Registrasi berhasil! Silakan login.");
+    window.location.href = "login.html";
+  }
+  </script>
+ </body>
+</html>

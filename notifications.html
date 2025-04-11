@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Notifikasi - AbduDev
+  </title>
+  <style>
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: #fff;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #262626;
+    }
+    .notif-container {
+      padding: 20px;
+    }
+    .notif-item {
+      background: #fff;
+      margin-bottom: 12px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .notif-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .notif-item span {
+      font-size: 14px;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: #3897f0;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    Notifikasi
+   </h1>
+   <a href="feed.html">
+    Kembali ke Feed
+   </a>
+  </header>
+  <div class="notif-container" id="notifList">
+  </div>
+  <script>
+   document.addEventListener("DOMContentLoaded", () => {
+      const notifs = JSON.parse(localStorage.getItem("notifikasi") || "[]");
+      const notifList = document.getElementById("notifList");
+
+      if (notifs.length === 0) {
+        notifList.innerHTML = "<p>Tidak ada notifikasi.</p>";
+        return;
+      }
+
+      notifs.forEach(n => {
+        const item = document.createElement("div");
+        item.className = "notif-item";
+        item.innerHTML = \`
+          <img src="\${n.avatar || 'https://via.placeholder.com/40'}" alt="avatar">
+          <span><strong>\${n.name}</strong> \${n.message}</span>
+        \`;
+        notifList.appendChild(item);
+      });
+    });
+  </script>
+ </body>
+</html>

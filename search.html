@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Search - AbduDev
+  </title>
+  <style>
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+    header {
+      background: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .search-bar {
+      padding: 20px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+    .results img, .results video {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    Cari Postingan
+   </h1>
+   <a href="feed.html">
+    Feed
+   </a>
+  </header>
+  <div class="search-bar">
+   <input id="searchInput" oninput="filterPosts()" placeholder="Cari berdasarkan caption atau username..." type="text"/>
+  </div>
+  <div class="results" id="results">
+  </div>
+  <script>
+   const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+  const resultsContainer = document.getElementById("results");
+
+  function showAll() {
+    resultsContainer.innerHTML = "";
+    posts.forEach(post => {
+      const el = document.createElement(post.type === "video" ? "video" : "img");
+      el.src = post.src;
+      if (post.type === "video") el.controls = true;
+      el.onclick = () => {
+        localStorage.setItem("selectedPost", JSON.stringify(post));
+        window.location.href = "post.html";
+      };
+      resultsContainer.appendChild(el);
+    });
+  }
+
+  function filterPosts() {
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    resultsContainer.innerHTML = "";
+
+    posts
+      .filter(post => 
+        post.caption?.toLowerCase().includes(q) ||
+        post.username?.toLowerCase().includes(q)
+      )
+      .forEach(post => {
+        const el = document.createElement(post.type === "video" ? "video" : "img");
+        el.src = post.src;
+        if (post.type === "video") el.controls = true;
+        el.onclick = () => {
+          localStorage.setItem("selectedPost", JSON.stringify(post));
+          window.location.href = "post.html";
+        };
+        resultsContainer.appendChild(el);
+      });
+  }
+
+  showAll();
+  </script>
+ </body>
+</html>

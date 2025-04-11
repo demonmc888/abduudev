@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Postingan - AbduDev
+  </title>
+  <style>
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+    }
+    header {
+      background: #fff;
+      padding: 15px 20px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .post-header {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .post-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .post-media {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .post-actions {
+      padding: 10px 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .post-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    .likes {
+      padding: 0 15px;
+      font-weight: bold;
+    }
+    .comments {
+      padding: 15px;
+    }
+    .comment {
+      margin-bottom: 10px;
+    }
+    .comment strong {
+      margin-right: 5px;
+    }
+    .comment-box {
+      display: flex;
+      border-top: 1px solid #eee;
+      padding: 10px 15px;
+      gap: 10px;
+    }
+    .comment-box input {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+    .comment-box button {
+      background: #3897f0;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    a {
+      color: #3897f0;
+      text-decoration: none;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h2>
+    Detail Post
+   </h2>
+   <a href="feed.html">
+    Kembali
+   </a>
+  </header>
+  <div class="container">
+   <div class="post-header">
+    <img alt="Avatar" src="https://via.placeholder.com/40"/>
+    <span id="username">
+     AbduDev
+    </span>
+   </div>
+   <div id="mediaContainer">
+   </div>
+   <div class="post-actions">
+    <button onclick="toggleLike()">
+     ❤
+    </button>
+    <span id="likeCount">
+     0 suka
+    </span>
+   </div>
+   <div class="comments" id="commentList">
+   </div>
+   <div class="comment-box">
+    <input id="commentInput" placeholder="Tulis komentar..." type="text"/>
+    <button onclick="addComment()">
+     Kirim
+    </button>
+   </div>
+  </div>
+  <script>
+   let likes = 0;
+  const likeCountEl = document.getElementById("likeCount");
+
+  function toggleLike() {
+    likes++;
+    likeCountEl.innerText = likes + " suka";
+  }
+
+  function addComment() {
+    const input = document.getElementById("commentInput");
+    const commentList = document.getElementById("commentList");
+    if (input.value.trim() !== "") {
+      const div = document.createElement("div");
+      div.className = "comment";
+      div.innerHTML = "<strong>user</strong> " + input.value;
+      commentList.appendChild(div);
+      input.value = "";
+    }
+  }
+
+  // Load media
+  const postData = JSON.parse(localStorage.getItem("selectedPost"));
+  if (postData) {
+    const container = document.getElementById("mediaContainer");
+    const el = document.createElement(postData.type === "video" ? "video" : "img");
+    el.src = postData.src;
+    if (postData.type === "video") el.controls = true;
+    el.className = "post-media";
+    container.appendChild(el);
+    document.getElementById("username").innerText = postData.user || "AbduDev";
+  }
+  </script>
+ </body>
+</html>

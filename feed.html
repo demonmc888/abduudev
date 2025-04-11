@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   AbduDev Feed
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+  <style>
+   body {
+      margin: 0;
+      background: #fafafa;
+      font-family: 'Arial', sans-serif;
+    }
+    header {
+      background: #fff;
+      padding: 15px 30px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #262626;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .upload-box {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+    }
+    .upload-box input, .upload-box textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .upload-box button {
+      background-color: #3897f0;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .post {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+    }
+    .post-header img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .post-media {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .post-content {
+      padding: 10px 15px;
+    }
+    .post-actions {
+      display: flex;
+      gap: 15px;
+      padding: 10px 15px;
+    }
+    .comments {
+      padding: 0 15px 15px;
+    }
+    .comments textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1>
+    AbduDev
+   </h1>
+   <nav>
+    <a href="profile.html">
+     Profile
+    </a>
+   </nav>
+  </header>
+  <div class="container">
+   <div class="upload-box">
+    <h3>
+     Upload Post
+    </h3>
+    <input id="mediaInput" type="file"/>
+    <textarea id="captionInput" placeholder="Tulis caption..."></textarea>
+    <button onclick="uploadPost()">
+     Post
+    </button>
+   </div>
+   <div id="feed">
+   </div>
+  </div>
+  <script>
+   let posts = [];
+
+    function uploadPost() {
+      const fileInput = document.getElementById('mediaInput');
+      const caption = document.getElementById('captionInput').value;
+
+      if (fileInput.files.length === 0) {
+        alert("Pilih foto atau video.");
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const url = URL.createObjectURL(file);
+      const post = {
+        id: Date.now(),
+        user: "abdu_dev",
+        avatar: "https://i.pravatar.cc/150?u=abdu",
+        media: url,
+        caption: caption,
+        liked: false,
+        comments: []
+      };
+
+      posts.unshift(post);
+      renderPosts();
+      fileInput.value = "";
+      document.getElementById('captionInput').value = "";
+    }
+
+    function toggleLike(postId) {
+      const post = posts.find(p => p.id === postId);
+      post.liked = !post.liked;
+      renderPosts();
+    }
+
+    function addComment(postId, textAreaId) {
+      const post = posts.find(p => p.id === postId);
+      const input = document.getElementById(textAreaId);
+      if (input.value.trim()) {
+        post.comments.push({ text: input.value.trim() });
+        input.value = "";
+        renderPosts();
+      }
+    }
+
+    function renderPosts() {
+      const feed = document.getElementById("feed");
+      feed.innerHTML = "";
+
+      posts.forEach(post => {
+        const commentsHTML = post.comments.map(c => `<p><b>${post.user}</b>: ${c.text}</p>`).join("");
+
+        feed.innerHTML += `
+          <div class="post">
+            <div class="post-header">
+              <img src="${post.avatar}">
+              <strong>${post.user}</strong>
+            </div>
+            <img src="${post.media}" class="post-media">
+            <div class="post-actions">
+              <button onclick="toggleLike(${post.id})">${post.liked ? "❤️" : "🤍"}</button>
+            </div>
+            <div class="post-content">
+              <p><strong>${post.user}</strong> ${post.caption}</p>
+            </div>
+            <div class="comments">
+              ${commentsHTML}
+              <textarea id="comment-${post.id}" placeholder="Tambah komentar..."></textarea>
+              <button onclick="addComment(${post.id}, 'comment-${post.id}')">Kirim</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+  </script>
+  <script>
+   function tambahNotifikasi(nama, pesan, avatar = "https://via.placeholder.com/40") {
+    let notifs = JSON.parse(localStorage.getItem("notifikasi") || "[]");
+    notifs.unshift({
+      name: nama,
+      message: pesan,
+      avatar: avatar
+    });
+    localStorage.setItem("notifikasi", JSON.stringify(notifs));
+  }
+  </script>
+ </body>
+</html>
