@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dana Kaget dari Bubu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    ul li {
+      background: rgba(255,255,255,0.2);
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #fff;
+      color: #00c6ff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #e0f7ff;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .link-box {
+      margin-top: 20px;
+      background: #fff;
+      color: #000;
+      padding: 12px;
+      border-radius: 8px;
+      word-break: break-word;
+    }
+
+    .link-box a {
+      color: #007aff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .link-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Bubu Bagi-Bagi Dana Kaget!</h1>
+    <p>Pantau Sosmed AbduDev Biar Gaketinggalan Info</p>
+    <button onclick="revealLink()">Ambil Dana Kaget</button>
+    <div id="linkBox" class="hidden">
+      <div class="link-box" id="danaLink"></div>
+    </div>
+  </div>
+
+  <script>
+    function revealLink() {
+      const danaLink = "https://link.dana.id/danakaget?c=s34qlsqt6&r=cEUYS4&orderId=20250412101214175515010300166163317690151"; // Ganti ini nanti
+      const anchor = `<a href="${danaLink}" target="_blank" rel="noopener noreferrer">${danaLink}</a>`;
+      document.getElementById('danaLink').innerHTML = anchor;
+      document.getElementById('linkBox').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
