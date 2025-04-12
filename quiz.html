@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Daget By Abdu</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #222;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .quiz-container {
+      background: linear-gradient(135deg, #4b6cb7, #182848);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .question {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .options button {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      margin: 15px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s;
+    }
+    .options button:hover {
+      background-color: #e67e22;
+      transform: scale(1.1);
+    }
+    .result {
+      font-size: 22px;
+      margin-top: 20px;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .hidden {
+      opacity: 0;
+    }
+    .show {
+      opacity: 1;
+    }
+    .daget-link {
+      color: #f39c12;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .question-container {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .end-container {
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <div id="endMessage" class="end-container">
+      <h2>Selamat, kamu sudah menang!</h2>
+      <p>Terima kasih telah mengikuti quiz ini.</p>
+    </div>
+    <div id="quizContent">
+      <!-- Pertanyaan 1 -->
+      <div class="question-container active" id="question1">
+        <div class="question">Apa ibu kota Indonesia?</div>
+        <div class="options">
+          <button onclick="checkAnswer(1, 'a')">Jakarta</button>
+          <button onclick="checkAnswer(1, 'b')">Bali</button>
+          <button onclick="checkAnswer(1, 'c')">Bandung</button>
+        </div>
+      </div>
+      
+      <!-- Pertanyaan 2 -->
+      <div class="question-container" id="question2">
+        <div class="question">Siapa presiden pertama Indonesia?</div>
+        <div class="options">
+          <button onclick="checkAnswer(2, 'a')">Soekarno</button>
+          <button onclick="checkAnswer(2, 'b')">Soeharto</button>
+          <button onclick="checkAnswer(2, 'c')">Joko Widodo</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 3 -->
+      <div class="question-container" id="question3">
+        <div class="question">Apa warna bendera Indonesia?</div>
+        <div class="options">
+          <button onclick="checkAnswer(3, 'a')">Merah Putih</button>
+          <button onclick="checkAnswer(3, 'b')">Hijau Putih</button>
+          <button onclick="checkAnswer(3, 'c')">Merah Kuning</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 4 -->
+      <div class="question-container" id="question4">
+        <div class="question">Gunung tertinggi di Indonesia adalah?</div>
+        <div class="options">
+          <button onclick="checkAnswer(4, 'a')">Gunung Semeru</button>
+          <button onclick="checkAnswer(4, 'b')">Gunung Rinjani</button>
+          <button onclick="checkAnswer(4, 'c')">Gunung Carstensz</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 5 -->
+      <div class="question-container" id="question5">
+        <div class="question">Luas wilayah Indonesia sekitar...</div>
+        <div class="options">
+          <button onclick="checkAnswer(5, 'a')">1,9 juta km²</button>
+          <button onclick="checkAnswer(5, 'b')">3,2 juta km²</button>
+          <button onclick="checkAnswer(5, 'c')">2,4 juta km²</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 6 -->
+      <div class="question-container" id="question6">
+        <div class="question">Mata uang resmi Indonesia adalah...</div>
+        <div class="options">
+          <button onclick="checkAnswer(6, 'a')">Rupiah</button>
+          <button onclick="checkAnswer(6, 'b')">Ringgit</button>
+          <button onclick="checkAnswer(6, 'c')">Baht</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 7 -->
+      <div class="question-container" id="question7">
+        <div class="question">Bulan kemerdekaan Indonesia adalah...</div>
+        <div class="options">
+          <button onclick="checkAnswer(7, 'a')">Agustus</button>
+          <button onclick="checkAnswer(7, 'b')">Juni</button>
+          <button onclick="checkAnswer(7, 'c')">Desember</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 8 -->
+      <div class="question-container" id="question8">
+        <div class="question">Nama pulau terbesar di Indonesia adalah...</div>
+        <div class="options">
+          <button onclick="checkAnswer(8, 'a')">Sumatera</button>
+          <button onclick="checkAnswer(8, 'b')">Jawa</button>
+          <button onclick="checkAnswer(8, 'c')">Kalimantan</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 9 -->
+      <div class="question-container" id="question9">
+        <div class="question">Presiden Indonesia yang ke-7 adalah...</div>
+        <div class="options">
+          <button onclick="checkAnswer(9, 'a')">Joko Widodo</button>
+          <button onclick="checkAnswer(9, 'b')">Susilo Bambang Yudhoyono</button>
+          <button onclick="checkAnswer(9, 'c')">Bacharuddin Jusuf Habibie</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 10 -->
+      <div class="question-container" id="question10">
+        <div class="question">Tahun kemerdekaan Indonesia adalah...</div>
+        <div class="options">
+          <button onclick="checkAnswer(10, 'a')">1945</button>
+          <button onclick="checkAnswer(10, 'b')">1950</button>
+          <button onclick="checkAnswer(10, 'c')">1960</button>
+        </div>
+      </div>
+
+      <!-- Pertanyaan 11-20 bisa dilanjutkan sesuai pola ini -->
+
+      <div class="result hidden" id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    // Jawaban yang benar untuk setiap soal
+    const correctAnswers = {
+      1: 'a',
+      2: 'a',
+      3: 'a',
+      4: 'a',
+      5: 'a',
+      6: 'a',
+      7: 'a',
+      8: 'a',
+      9: 'a',
+      10: 'a',
+      // Tambahkan jawaban yang benar untuk pertanyaan 11 sampai 20
+    };
+
+    if(localStorage.getItem("quizCompleted") === "true") {
+      document.getElementById("quizContent").style.display = "none";
+      document.getElementById("endMessage").style.display = "block";
+    }
+
+    function checkAnswer(questionId, answer) {
+      const result = document.getElementById('result');
+      const correctAnswer = correctAnswers[questionId];
+      if (answer === correctAnswer) {
+        result.innerHTML = 'Selamat! Jawabanmu benar! <a href="https://link.dana.id/danakaget?c=s34qlsqt6&r=cEUYS4&orderId=20250412101214175515010300166163317690151" target="_blank" class="daget-link">Klik di sini untuk ambil dagetmu!</a>';
+        result.classList.remove('hidden');
+        result.classList.add('show');
+        
+        // Tandai quiz selesai dan sembunyikan pertanyaan
+        localStorage.setItem("quizCompleted", "true");
+        document.getElementById("quizContent").style.display = "none";
+        document.getElementById("endMessage").style.display = "block";
+      } else {
+        result.innerHTML = 'Oops! Jawabanmu salah! Coba lagi.';
+        result.classList.remove('hidden');
+        result.classList.add('show');
+      }
+    }
+  </script>
+
+</body>
+</html>
