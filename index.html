@@ -158,6 +158,12 @@
     <h2>Selamat Datang</h2>
     <p>Halo! Saya <strong>Abdu</strong>, web developer yang suka bikin tampilan web menarik dan interaktif.</p>
     <p>Kalian bisa menikmati dan mencari hal-hal yang baru disitus ini</p>
+<div style="text-align: center; margin-top: 20px;">
+  <a href="#" onclick="kirimOrder()" style="display: inline-block; background: #28a745; padding: 15px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    Order Jasa Website Sekarang
+  </a>
+</div>
+
   
   </section>
   <section>
@@ -167,7 +173,6 @@
       <h3 style="margin: 0;">AbduDev Bagi-Bagi DanaKaget Di Waktu Tertentu</h3>
       <p style="margin-top: 10px; font-size: 14px;">Klik untuk ambil Dana Kaget sekarang!</p>
     </a>
-    <p></p>
     <a href="quiz.html" style="display: inline-block; background: #ffc107; padding: 20px; border-radius: 12px; color: #333; text-decoration: none; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
       <h3 style="margin: 0;">Quiz Berhadiah Daget</h3>
       <p style="margin-top: 10px; font-size: 14px;">Klik untuk menjawab quiz dan dapatkan dagetnya!</p>
@@ -243,5 +248,15 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+
+<script>
+  function kirimOrder() {
+    const pesan = `Halo AbduDev! Saya tertarik untuk order jasa pembuatan website dari kamu.%0A%0ABerikut detail singkat saya:%0A- Nama: [isi nama Anda]%0A- Email: [isi email Anda]%0A- Jenis Website: [Toko Online/Bisnis/Custom]%0A- Deskripsi: [tulis singkat kebutuhan Anda]`;
+    const noWa = "6281385658292"; // Ganti dengan nomor WA kamu
+    const url = `https://wa.me/${noWa}?text=${pesan}`;
+    window.open(url, '_blank');
+  }
+</script>
+
 </body>
 </html>
