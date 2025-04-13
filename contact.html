@@ -1,45 +1,167 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kontak - AbduDev</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kontak - AbduDev</title>
+
+<style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #222;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 30px;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background: #007bff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .search-section {
+      background: #e9ecef;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .search-box input {
+      padding: 10px;
+      width: 60%;
+      max-width: 300px;
+    }
+
+    .search-box button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    .btn {
+      margin: 5px;
+      display: inline-block;
+    }
+
+    footer {
+      text-align: center;
+      background: #111;
+      color: white;
+      padding: 20px;
+    }
+  </style></head>
 <body>
-  <header>
-    <div class="nav-container">
-      <a href="home.html" class="logo">
-        <img src="logo.jpg" alt="Logo"> AbduDev
-      </a>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">Tentang</a>
-        <a href="contact.html">Kontak</a>
-         <a href="todo.html">To-Do</a>
-         <a href="leaderboard.html">Leaderboard</a>
-          <a href="pelajar.html">Belajar</a>
-          <a href="marketdu.html">SHOP</a>
-          <a href="login.html">SOSMED</a>
-      </nav>
-    </div>
-  </header>
+<header>
+<div class="nav-container">
+<a class="logo" href="home.html">
+<img alt="Logo" src="logo.jpg"/> AbduDev
+      </a><div class="menu-toggle" id="menu-toggle">☰</div>
+<nav id="nav-menu">
+<a href="index.html">Home</a>
+<a href="about.html">Tentang</a>
+<a href="contact.html">Kontak</a>
+<a href="todo.html">To-Do</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="pelajar.html">Belajar</a>
+<a href="marketdu.html">SHOP</a>
+<a href="login.html">SOSMED</a>
+</nav>
+</div>
+</header>
+<section class="search-section">
+<div class="search-box">
+<input id="searchBox" placeholder="Cari sesuatu..." type="text"/>
+<button onclick="handleSearch()">Cari</button>
+</div>
+</section>
 
-  <section>
-    <h2>Hubungi Saya</h2>
-    <form id="formKontak">
-      <input type="text" id="nama" placeholder="Nama Anda" required /><br><br>
-      <input type="email" id="email" placeholder="Email Anda" required /><br><br>
-      <textarea id="pesan" placeholder="Pesan Anda" required></textarea><br><br>
-      <button type="submit">Kirim</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 AbduDev. All rights reserved.</p>
-  </footer>
-
-  <script>
+<section>
+<h2>Hubungi Saya</h2>
+<form id="formKontak">
+<input id="nama" placeholder="Nama Anda" required="" type="text"/><br/><br/>
+<input id="email" placeholder="Email Anda" required="" type="email"/><br/><br/>
+<textarea id="pesan" placeholder="Pesan Anda" required=""></textarea><br/><br/>
+<button type="submit">Kirim</button>
+</form>
+</section>
+<footer>
+<p>© 2025 AbduDev. All rights reserved.</p>
+</footer>
+<script>
     document.getElementById('formKontak').addEventListener('submit', function(e) {
       e.preventDefault();
       const nama = document.getElementById('nama').value.trim();
@@ -53,7 +175,7 @@
       this.reset();
     });
   </script>
-  <!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -66,5 +188,63 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<script>
+    function handleSearch() {
+      const query = document.getElementById('searchBox').value.trim();
+      if (query === '') {
+        alert("Masukkan kata kunci pencarian!");
+      } else {
+        alert("Kamu mencari: " + query);
+      }
+    }
+
+    function filterList() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const items = document.querySelectorAll('#projectList li');
+      items.forEach((item) => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(input) ? 'list-item' : 'none';
+      });
+    }
+
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/67f772519dbde9190fb12c58/1iof9d4db';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<script>
+  function kirimOrder() {
+    const pesan = `Halo AbduDev! Saya tertarik untuk order jasa pembuatan website dari kamu.%0A%0ABerikut detail singkat saya:%0A- Nama: [isi nama Anda]%0A- Email: [isi email Anda]%0A- Jenis Website: [Toko Online/Bisnis/Custom]%0A- Deskripsi: [tulis singkat kebutuhan Anda]`;
+    const noWa = "6281385658292"; // Ganti dengan nomor WA kamu
+    const url = `https://wa.me/${noWa}?text=${pesan}`;
+    window.open(url, '_blank');
+  }
+</script>
+<script>
+        document.getElementById('formKontak').addEventListener('submit', function(e) {
+          e.preventDefault();
+          const nama = document.getElementById('nama').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const pesan = document.getElementById('pesan').value.trim();
+          if (!nama || !email || !pesan) {
+            alert("Semua kolom wajib diisi!");
+            return;
+          }
+          alert(`Terima kasih, ${nama}! Pesan kamu sudah terkirim.`);
+          this.reset();
+        });
+        </script>
 </body>
 </html>
