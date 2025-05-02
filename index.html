@@ -1,140 +1,37 @@
-
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4756546448662469"
-     crossorigin="anonymous"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jasa Pembuatan Website & Profesional | AbduDev</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AbduDev | Website Profesional & Modern</title>
+  <link rel="icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-      color: #333;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #222;
-      padding: 10px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo img {
-      height: 30px;
-    }
-
-    nav {
-      display: flex;
-      gap: 15px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-
-    nav a:hover {
-      background: #007bff;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 26px;
-      color: white;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        background: #333;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        width: 200px;
-        border-radius: 8px;
-        padding: 10px;
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    .search-section {
-      background: #e9ecef;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .search-box input {
-      padding: 10px;
-      width: 60%;
-      max-width: 300px;
-    }
-
-    .search-box button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    section {
-      padding: 20px;
-    }
-
-    h2 {
-      color: #007bff;
-    }
-
-    .btn {
-      margin: 5px;
-      display: inline-block;
-    }
-
-    footer {
-      text-align: center;
-      background: #111;
-      color: white;
-      padding: 20px;
-    }
+    :root { --primary:#005bea; --accent:#f64c72; --light:#f4f7fe; --dark:#1e1e2f; --gray-200:#e2e28; --gray-600:#595970; --font:'Inter',sans-serif; --transition:0.4s; }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:var(--font);background:var(--light);color:var(--dark);scroll-behavior:smooth;}
+    header{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.9);backdrop-filter:blur(10px);z-index:100;transition:background var(--transition);} header.scrolled{background:rgba(255,255,255,0.95);}
+    .nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;padding:1rem;}
+    .logo{font-size:1.5rem;font-weight:700;color:var(--primary);text-decoration:none;}
+    .menu{display:flex;gap:1.5rem;} .menu a{text-decoration:none;color:var(--dark);font-weight:500;position:relative;transition:color var(--transition);} .menu a::after{content:'';position:absolute;width:0;height:2px;background:var(--accent);bottom:-4px;left:0;transition:width var(--transition);} .menu a:hover{color:var(--accent);} .menu a:hover::after{width:100%;}
+    .hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;} .hamburger div{width:25px;height:3px;background:var(--dark);transition:transform var(--transition);}
+    @media(max-width:768px){.menu{display:none;position:absolute;top:70px;right:20px;background:#fff;flex-direction:column;padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);} .menu.active{display:flex;} .hamburger{display:flex;}}
+    .hero{height:100vh;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;position:relative;overflow:hidden;}
+    .hero svg.wave{position:absolute;bottom:0;width:100%;}
+    .hero .content{max-width:800px;z-index:1;animation:fadeInUp 1s ease-out;}
+    .hero h1{font-size:3rem;margin-bottom:1rem;} .hero p{font-size:1.125rem;margin-bottom:2rem;}.hero .btn{background:#fff;color:var(--primary);padding:.75rem 1.5rem;border:none;border-radius:50px;font-weight:600;transition:background var(--transition),transform var(--transition);} .hero .btn:hover{background:var(--accent);color:#fff;transform:scale(1.05);} @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+    .section{padding:6rem 1rem;max-width:1200px;margin:auto;} .section h2{text-align:center;font-size:2.25rem;margin-bottom:1rem;color:var(--dark);} .subtitle{text-align:center;max-width:600px;margin:auto;color:var(--gray-600);margin-bottom:3rem;}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;} .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.1);transition:transform var(--transition),box-shadow var(--transition);} .card:hover{transform:translateY(-8px);box-shadow:0 8px 24px rgba(0,0,0,0.15);} .card img{width:100%;height:180px;object-fit:cover;} .info{padding:1.5rem;} .info h3{font-size:1.25rem;margin-bottom:.75rem;color:var(--primary);} .info p{color:var(--gray-600);margin-bottom:1.25rem;} .btn-secondary{background:var(--accent);color:#fff;padding:.5rem 1rem;border:none;border-radius:8px;font-weight:600;transition:background var(--transition);} .btn-secondary:hover{background:#d94365;}
+    .contact-form{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:1rem;} .contact-form input,.contact-form textarea{padding:1rem;border:1px solid var(--gray-200);border-radius:8px;resize:none;font-family:var(--font);} .contact-form button{background:var(--primary);color:#fff;padding:1rem;border:none;border-radius:8px;cursor:pointer;font-weight:600;transition:background var(--transition);} .contact-form button:hover{background:#004bb5;}
+    footer{background:var(--dark);color:#fff;text-align:center;padding:2rem 1rem;}
   </style>
 </head>
-
 <body>
-  <header>
-    <div class="nav-container">
-      <a href="home.html" class="logo">
-        <img src="logo.jpg" alt="Logo"> AbduDev
-      </a>
-      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
-      <nav id="nav-menu">
+  <header id="header">
+    <div class="nav">
+      <a href="#" class="logo">AbduDev</a>
+      <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+      <nav class="menu" id="menu">
         <a href="index.html">Home</a>
         <a href="about.html">Tentang</a>
         <a href="contact.html">Kontak</a>
@@ -146,132 +43,65 @@
       </nav>
     </div>
   </header>
-
-  <section class="search-section">
-    <div class="search-box">
-      <input type="text" placeholder="Cari sesuatu..." id="searchBox" />
-      <button onclick="handleSearch()">Cari</button>
+  <!-- Intro Image -->
+  <section data-aos="fade-in" style="margin-top:70px;">
+    <img src="intro.jpg" alt="Intro Image" style="width:100%; display:block;" />
+  </section>
+  <section class="hero" id="home">
+    <div class="content">
+      <h1 data-aos="fade-up">Selamat Datang</h1>
+      <p data-aos="fade-up" data-aos-delay="200">Halo! Saya <strong>Abdu</strong>, web developer yang suka bikin tampilan web menarik dan interaktif. Kalian bisa menikmati dan mencari hal-hal yang baru di situs ini.</p>
+      <button class="btn" data-aos="fade-up" data-aos-delay="400" onclick="kirimOrder()">Order Jasa Website Sekarang</button>
+    </div>
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="var(--light)" fill-opacity="1" d="M0,224L60,213.3C120,203,240,181,360,181.3C480,181,600,203,720,202.7C840,203,960,181,1080,160C1200,139,1320,117,1380,106.7L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+  </section>
+  <section class="section" id="services">
+    <h2 data-aos="fade-up">Postingan Terbaru</h2>
+    <div class="cards">
+      <div class="card" data-aos="zoom-in"><img src="danakaget.jpg" alt="Dana Kaget"><div class="info"><h3>AbduDev Bagi-Bagi DanaKaget</h3><p>Klik untuk ambil Dana Kaget sekarang!</p><button class="btn-secondary" onclick="window.open('danakaget.html')">Lihat</button></div></div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200"><img src="quiz.jpg" alt="Quiz"><div class="info"><h3>Quiz Berhadiah Daget</h3><p>Klik untuk menjawab quiz dan dapatkan dagetnya!</p><button class="btn-secondary" onclick="window.open('quiz.html')">Lihat</button></div></div>
     </div>
   </section>
-
-<img src="intro.jpg" alt="Deskripsi gambar" width="100%" style="margin-bottom: 20px;">
-  
-
-  <section>
-    <!-- Iklan Banner AdSense -->
-<div style="margin: 20px auto; text-align: center;">
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-4756546448662469"
-       data-ad-slot="8438004002"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-</div>
-    <h2>Selamat Datang</h2>
-    <p>Halo! Saya <strong>Abdu</strong>, web developer yang suka bikin tampilan web menarik dan interaktif.</p>
-    <p>Kalian bisa menikmati dan mencari hal-hal yang baru disitus ini</p>
-<div style="text-align: center; margin-top: 20px;">
-  <a href="#" onclick="kirimOrder()" style="display: inline-block; background: #28a745; padding: 15px 25px; border-radius: 12px; color: white; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    Order Jasa Website Sekarang
-  </a>
-</div>
-
-  
-  </section>
-  <section>
-  <h2>Postingan Terbaru</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <a href="danakaget.html" style="display: inline-block; background: #ffc107; padding: 20px; border-radius: 12px; color: #333; text-decoration: none; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h3 style="margin: 0;">AbduDev Bagi-Bagi DanaKaget Di Waktu Tertentu</h3>
-      <p style="margin-top: 10px; font-size: 14px;">Klik untuk ambil Dana Kaget sekarang!</p>
-    </a>
-    <a href="quiz.html" style="display: inline-block; background: #ffc107; padding: 20px; border-radius: 12px; color: #333; text-decoration: none; max-width: 400px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-      <h3 style="margin: 0;">Quiz Berhadiah Daget</h3>
-      <p style="margin-top: 10px; font-size: 14px;">Klik untuk menjawab quiz dan dapatkan dagetnya!</p>
-    </a>
-  </div>
-</section>
-
-  <section>
-    <div style="text-align: center; margin-top: 20px;">
-      <a href="todo.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Coba Aplikasi To-Do List</a>
-      <p></p>
-      <a href="tebak-buah.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Coba Tebak-Buah</a>
-      <a href="jadwalsholat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">Jadwal Sholat</a>
-      <p></p>
-      <a href="playmusic.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">PLAYLAGU</a>
-      <p></p>
-      <a href="chatcurhat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">CURHATSAMABOT</a>
-      <p></p>
-      <a href="komunitas.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">KOMUNITAS PUBLIC</a>
-      <p></p>
-      <a href="manfaat.html" class="btn" style="padding: 10px 20px; background: #007bff; color: white; border-radius: 6px; text-decoration: none;">BELAJAR CODING PEMULA</a>
+  <section class="section" id="projects">
+    <h2 data-aos="fade-up">Proyek Saya</h2>
+    <p class="subtitle" data-aos="fade-up" data-aos-delay="200">Beberapa hasil kerja terbaik kami.</p>
+    <div class="cards">
+      <div class="card" data-aos="zoom-in" data-aos-delay="300">
+        <img src="tebak-buah.jpg" alt="Tebak Kata">
+        <div class="info">
+          <h3>Tebak Kata</h3>
+          <p>Aplikasi edukasi interaktif untuk mengasah kosa kata.</p>
+          <button class="btn-secondary" onclick="window.open('tebak-buah.html','_blank')">Lihat Demo</button>
+        </div>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="400">
+        <img src="todo.jpg" alt="To-Do List">
+        <div class="info">
+          <h3>Aplikasi To-Do List</h3>
+          <p>Kelola tugas harian Anda dengan antarmuka sederhana dan intuitif.</p>
+          <button class="btn-secondary" onclick="window.open('todo.html','_blank')">Lihat Demo</button>
+        </div>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="500">
+        <img src="jadwalsholat.jpg" alt="Jadwal Sholat">
+        <div class="info">
+          <h3>Jadwal Sholat</h3>
+          <p>Menampilkan waktu sholat otomatis berdasarkan lokasi Anda.</p>
+          <button class="btn-secondary" onclick="window.open('jadwalsholat.html','_blank')">Lihat Demo</button>
+        </div>
+      </div>
     </div>
-
-    <h2>Proyek Saya</h2>
-    <input type="text" placeholder="Cari proyek..." id="searchInput" onkeyup="filterList()" />
-
-    <ul id="projectList">
-      <li>Tebak Kata <a href="tebak-buah.html" target="_blank">[Lihat]</a></li>
-      <li>Aplikasi To-Do List <a href="todo.html" target="_blank">[Lihat]</a></li>
-      <li>JadwalSholat <a href="jadwalsholat.html" target="_blank">[Lihat]</a></li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 AbduDev. All rights reserved.</p>
+  </section>  <footer id="contact"="contact">
+    <p>&copy; 2025 AbduDev. Semua hak cipta dilindungi.</p>
+    <p>Email: contact@abdudev.com | WA: <a href="https://wa.me/6281385658292" style="color:var(--accent)">+62 813-8565-8292</a></p>
   </footer>
-
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    function handleSearch() {
-      const query = document.getElementById('searchBox').value.trim();
-      if (query === '') {
-        alert("Masukkan kata kunci pencarian!");
-      } else {
-        alert("Kamu mencari: " + query);
-      }
-    }
-
-    function filterList() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const items = document.querySelectorAll('#projectList li');
-      items.forEach((item) => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(input) ? 'list-item' : 'none';
-      });
-    }
-
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('nav-menu');
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('active');
-    });
+    AOS.init({duration:800,once:true});
+    const header=document.getElementById('header');window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>50));
+    document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('menu').classList.toggle('active'));
+    function kirimOrder(){const pesan=encodeURIComponent("Halo AbduDev! Saya tertarik untuk order jasa pembuatan website dari kamu.");window.open(`https://wa.me/6281385658292?text=${pesan}`,'_blank');}
+    function filterList(){const input=document.querySelector('input[placeholder]'),filter=input.value.toLowerCase(),items=document.querySelectorAll('#projectList li');items.forEach(item=>item.style.display=item.textContent.toLowerCase().includes(filter)?'block':'none');}
   </script>
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/67f772519dbde9190fb12c58/1iof9d4db';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
-
-<script>
-  function kirimOrder() {
-    const pesan = `Halo AbduDev! Saya tertarik untuk order jasa pembuatan website dari kamu.%0A%0ABerikut detail singkat saya:%0A- Nama: [isi nama Anda]%0A- Email: [isi email Anda]%0A- Jenis Website: [Toko Online/Bisnis/Custom]%0A- Deskripsi: [tulis singkat kebutuhan Anda]`;
-    const noWa = "6281385658292"; // Ganti dengan nomor WA kamu
-    const url = `https://wa.me/${noWa}?text=${pesan}`;
-    window.open(url, '_blank');
-  }
-</script>
-
 </body>
 </html>
